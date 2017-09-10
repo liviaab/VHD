@@ -41,40 +41,63 @@ var calculatePosteriorDistributions = function( jointMatrix, marginalDistributio
 	return posteriorDistributionMatrix;
 }
 
-var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistributionYACHO){
+var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistributionY){
 	// check if there are equal columns
-	var marginalDistributionTemp1 = [];
+	var finalMarginalDistribution = [];
 	var equal = true, multiple = true;
 	var scaleFactorPrev, scaleFactorCurr;
+	var columnValues, columnValuesToCompare ;
+	var hyperDistributionMatrix = createMatrix(posteriorDistributionMatrix.rows, 0, 0);
+	var markedColumns = [];
 
-	for(var j = 0; j < posteriorDistributionMatrix.columns ; j++){
-		
-		for(var k = j+1; k < posteriorDistributionMatrix.columns ; k++){
+	for(var j = 0; j < posteriorDistributionMatrix.columns-1 ; j++){
+
+		columnValues = [];
+		columnValuesToCompare = [];
+		if(  markedColumns.indexOf(j) > -1 ){
+			continue;
+		}
+
+		for(var k = j+1 ; k < posteriorDistributionMatrix.columns; k++){
 			equal = false;
-			scaleFactorPrev = posteriorDistributionMatrix[0][k]/posteriorDistributionMatrix[0][j];
+			scaleFactorPrev = posteriorDistributionMatrix.data[0][k]/posteriorDistributionMatrix.data[0][j];
 			scaleFactorCurr = 1;
 			
 			for(var i = 0; i < posteriorDistributionMatrix.rows; i++){
-				
-				if( posteriorDistributionMatrix[i][j] != posteriorDistributionMatrix[i][k] ){
+				columnValues[i] = posteriorDistributionMatrix.data[i][j];
+				columnValuesToCompare[i] = posteriorDistributionMatrix.data[i][k];
+
+				if( posteriorDistributionMatrix.data[i][j] != posteriorDistributionMatrix.data[i][k] ){
 					equal = false;
 				}
 
-				scaleFactorCurr	= posteriorDistributionMatrix[0][k]/posteriorDistributionMatrix[0][j];
+				scaleFactorCurr	= posteriorDistributionMatrix.data[i][k]/posteriorDistributionMatrix.data[i][j];
 				if(scaleFactorCurr != scaleFactorPrev){
 					multiple = false;
 				}
+				scaleFactorPrev = scaleFactorCurr;
+			}			
 
+			if(j+1 == k){
+				addColumn(hyperDistributionMatrix, columnValues);
+				finalMarginalDistribution.push(marginalDistribution[j]);
 			}
-
-			if(equal || multiple) {
-				// junta as duas
-				// muda a distrib. marginal.
+				
+			if(equal || multiple) {				
+				markedColumns.push(k);
 			}else{
-				continue;
+				if(j == (posteriorDistributionMatrix.columns - 2) && k == (posteriorDistributionMatrix.columns -1) ){
+					addColumn(hyperDistributionMatrix, columnValuesToCompare);
+					finalMarginalDistribution.push(marginalDistribution[k]);
+				}
 			}
 		}
 	}
+
+	return {
+		matrix: hyperDistributionMatrix, 
+		distribution: finalMarginalDistribution 
+	};
 }
 
 
@@ -94,7 +117,8 @@ console.log("marginal", marginalDistribution);
 var posteriorDistribution = calculatePosteriorDistributions(jointMatrix, marginalDistribution);
 console.log("posterior" , posteriorDistribution);
 
-
-
+var object = getHyperDistribution(posteriorDistribution, marginalDistribution);
+console.log("matriz", object.matrix);
+console.log("distribution", object.distribution);
 
 
