@@ -19,6 +19,7 @@ var createMatrix = function(numRows, numColumns, defaultValue){
 }
 
 
+
 /*
 	@Function: addColumn
 	@Param: matrix, values
@@ -29,7 +30,7 @@ var createMatrix = function(numRows, numColumns, defaultValue){
 
 var addColumn = function(matrix, values){
 	if(values.length > matrix.rows){
-		console.log("Wrror - This column has more rows than the original matrix.");
+		console.log("Error - This column has more rows than the original matrix.");
 		return;
 	}
 
@@ -38,4 +39,37 @@ var addColumn = function(matrix, values){
 	}
 
 	matrix.columns++;
+}
+
+var addMatrixColumn = function(matrixSource, matrixDest, columnIndex){	
+	if(matrixSource.rows != matrixDest.rows){
+		console.log("Error - Cannot copy column. Number of rows is different.");
+		return;
+	}
+
+	for(var i = 0; i < matrixSource.rows; i++){
+		matrixDest.data[i][columnIndex] = matrixSource.data[i][columnIndex];
+	}
+
+	matrixDest.columns++;
+}
+
+var removeColumn = function(matrix, columnIndex){
+	console.log('\tREMOVE COL');
+	var retMatrix = createMatrix(matrix.rows, matrix.columns-1, 0);
+	var k;
+
+	for(var i = 0; i < matrix.numRows; i++){
+		k = 0;
+		for(var j = 0; j < matrix.numColumns; j++){
+			if( j == columnIndex){
+			//	console.log('pulei a ', j);
+				break;
+			}
+			//console.log('copiando', matrix.data[i][k]);
+			retMatrix.data[i][k] = matrix.data[i][k];
+			k++;
+		}
+	}
+	return retMatrix;
 }
