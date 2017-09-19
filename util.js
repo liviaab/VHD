@@ -55,21 +55,22 @@ var addMatrixColumn = function(matrixSource, matrixDest, columnIndex){
 }
 
 var removeColumn = function(matrix, columnIndex){
-	console.log('\tREMOVE COL');
+	console.log('\tREMOVE COL', columnIndex);
+
 	var retMatrix = createMatrix(matrix.rows, matrix.columns-1, 0);
 	var k;
 
-	for(var i = 0; i < matrix.numRows; i++){
+	console.log('ret matrix in', retMatrix);
+	for(var i = 0; i < matrix.rows; i++){
 		k = 0;
-		for(var j = 0; j < matrix.numColumns; j++){
-			if( j == columnIndex){
-			//	console.log('pulei a ', j);
+		for(var j = 0; j < matrix.columns; j++){
+			if( j == columnIndex){			 	
 				break;
 			}
-			//console.log('copiando', matrix.data[i][k]);
 			retMatrix.data[i][k] = matrix.data[i][k];
 			k++;
 		}
-	}
+	}	
+
 	return retMatrix;
 }
