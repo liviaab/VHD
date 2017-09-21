@@ -48,7 +48,7 @@ var addMatrixColumn = function(matrixSource, matrixDest, columnIndex){
 	}
 
 	for(var i = 0; i < matrixSource.rows; i++){
-		matrixDest.data[i][columnIndex] = matrixSource.data[i][columnIndex];
+		matrixDest.data[i][matrixDest.columns] = matrixSource.data[i][columnIndex];
 	}
 
 	matrixDest.columns++;
@@ -59,8 +59,7 @@ var removeColumn = function(matrix, columnIndex){
 
 	var retMatrix = createMatrix(matrix.rows, matrix.columns-1, 0);
 	var k;
-
-	console.log('ret matrix in', retMatrix);
+	
 	for(var i = 0; i < matrix.rows; i++){
 		k = 0;
 		for(var j = 0; j < matrix.columns; j++){
@@ -71,6 +70,50 @@ var removeColumn = function(matrix, columnIndex){
 			k++;
 		}
 	}	
-
+	console.log('ret matrix in', retMatrix);
 	return retMatrix;
+}
+
+var columnIsZero = function(matrixObject, columnIndex){
+	var sum = 0;
+	for(var i = 0; i < matrixObject.rows; i++){
+		sum += Math.abs(matrixObject.data[i][columnIndex]);
+	}
+
+	return (sum == 0)? true : false;
+}
+
+// returns the first occurrence
+var columnMultiple = function(matrix, j){
+	var prevScale, currScale, equal;
+
+	if(matrix.rows >= 1){ 
+		return -1;
+	}
+
+	for(var k = j+1; k < matrix.columns; k++){
+		prevScale = matrix.data[0][j]/matrix.data[0][k];
+		currScale = matrix.data[1][j]/matrix.data[1][k];
+
+		if(prevScale != currScale){
+			continue;
+		}
+		else{
+			equal = true;
+			for(var i = 2; i < matrix.rows; i++){
+				currScale = prevScale;
+				currScale = matrix.data[i][j]/matrix.data[i][k];
+				if(prevScale != currScale){
+					equal = false;
+					break;
+				}
+			}
+
+			if( equal ){
+				return k;
+			}
+		}
+	}
+
+	return -1;
 }

@@ -28,46 +28,34 @@ var calculateMarginalDistribution = function(jointMatrix){
 	return marginalDistributionY;
 }
 
-var calculatePosteriorDistributions = function( jointMatrix, initialMarginalDistribution){
-	//normalize the columns of J
 
-	//remove undefined columns
-	var undefinedColumn;
-	var posteriorDistributionMatrix = createMatrix(jointMatrix.rows, 0, 0);
+
+var calculatePosteriorDistribution = function(jointMatrix, initialMarginalDistribution){
 	var marginalDistribution = [];
+	var returnMatrix = createMatrix(jointMatrix.rows, 0, 0);
 
-	for (var j = 0; j < jointMatrix.columns ; j++){
-		undefinedColumn = true;
-		for (var i = 0; i < jointMatrix.rows; i++){		
 
-			if(jointMatrix.data[i][j] != 0 && jointMatrix.data[i][j] != NaN){
-				console.log('column ',j, ' has numbers. ' );
-				undefinedColumn = false;
-				break;
-			}
-		}
-
-		if(undefinedColumn == true){
+	for(var j = 0; j < jointMatrix.columns ; j++){
+		//retirando coluna de zeros
+		if( columnIsZero(jointMatrix, j)){
 			console.log('\t', j+1, " column is zero");
-			console.log('JM', jointMatrix);
-			console.log(jointMatrix.rows, jointMatrix.columns);
-			posteriorDistributionMatrix = removeColumn(jointMatrix, j);
-		}	
-		else{
-			console.log("Add", initialMarginalDistribution[j]);
-			marginalDistribution.push(initialMarginalDistribution[j]);
-			console.log("add column" ,j, posteriorDistributionMatrix);
-			addMatrixColumn(jointMatrix, posteriorDistributionMatrix, j)
-		}	
+			returnMatrix = removeColumn(jointMatrix, j);
+			continue;
+		}
+		addMatrixColumn(jointMatrix,returnMatrix,j);
+		// console.log("Add", initialMarginalDistribution[j]);
+		marginalDistribution.push(initialMarginalDistribution[j]);
 	}
 
-	var returnMatrix = createMatrix(jointMatrix.rows, jointMatrix.columns, 0);
-	for(var j = 0; j < jointMatrix.columns; j++){
-		for(var i = 0; i < jointMatrix.rows ; i++){
-			returnMatrix.data[i][j] = jointMatrix.data[i][j]/marginalDistribution[j]; 	
+	console.log('JOINT', jointMatrix);
+	console.log("RETURN", returnMatrix);
+	//var returnMatrix = createMatrix(jointMatrix.rows, jointMatrix.columns, 0);
+	for(var j = 0; j < returnMatrix.columns; j++){
+		for(var i = 0; i < returnMatrix.rows ; i++){
+			returnMatrix.data[i][j] = returnMatrix.data[i][j]/marginalDistribution[j]; 	
 		}	
 	}
-	console.log('the end', returnMatrix, marginalDistribution);
+	console.log('the end new PD', returnMatrix, marginalDistribution);
 	
 	return {
 		matrix: returnMatrix,
@@ -75,60 +63,35 @@ var calculatePosteriorDistributions = function( jointMatrix, initialMarginalDist
 	}
 }
 
-
 var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistributionY){
-	// check if there are equal columns
-	var finalMarginalDistribution = [];
-	var equal = true, multiple = true;
-	var scaleFactorPrev, scaleFactorCurr;
-	var columnValues, columnValuesToCompare ;
+	// check if there are scaled columns
 	var hyperDistributionMatrix = createMatrix(posteriorDistributionMatrix.rows, 0, 0);
-	var markedColumns = [];
+	var finalMarginalDistribution = [];
+	var removedColumns = [];
 
-	for(var j = 0; j < posteriorDistributionMatrix.columns-1 ; j++){
-
-		columnValues = [];
-		columnValuesToCompare = [];
-		if(  markedColumns.indexOf(j) > -1 ){
+	for(var j = 0; j < posteriorDistributionMatrix.columns ; j++){
+		if(  removedColumns.includes(j)){
 			continue;
 		}
 
-		for(var k = j+1 ; k < posteriorDistributionMatrix.columns; k++){
-			equal = false;
-			scaleFactorPrev = posteriorDistributionMatrix.data[0][k]/posteriorDistributionMatrix.data[0][j];
-			scaleFactorCurr = 1;
+		finalMarginalDistribution.push(marginalDistributionY[j]);
+
+		var columnToRemove = columnMultiple(posteriorDistributionMatrix, j);
+		while( columnToRemove != -1){
+			console.log('removendo coluna ', columnToRemove);
+
+			hyperDistributionMatrix  = removeColumn(jointMatrix, multiples[k]);
+			removedColumns.push(columnToRemove);
+			finalMarginalDistribution[j] += marginalDistributionY[ columnToRemove ];
 			
-			for(var i = 0; i < posteriorDistributionMatrix.rows; i++){
-				columnValues[i] = posteriorDistributionMatrix.data[i][j];
-				columnValuesToCompare[i] = posteriorDistributionMatrix.data[i][k];
-
-				if( posteriorDistributionMatrix.data[i][j] != posteriorDistributionMatrix.data[i][k]){
-					equal = false;
-				}
-
-				scaleFactorCurr	= posteriorDistributionMatrix.data[i][k]/posteriorDistributionMatrix.data[i][j];
-				if(scaleFactorCurr != scaleFactorPrev){
-					multiple = false;
-				}
-				scaleFactorPrev = scaleFactorCurr;
-			}			
-
-			if(j+1 == k){
-				addColumn(hyperDistributionMatrix, columnValues);
-				finalMarginalDistribution.push(marginalDistribution[j]);
-			}
-				
-			if(equal || multiple) {				
-				markedColumns.push(k);
-			}else{
-				if(j == (posteriorDistributionMatrix.columns - 2) && k == (posteriorDistributionMatrix.columns -1) ){
-					addColumn(hyperDistributionMatrix, columnValuesToCompare);
-					finalMarginalDistribution.push(marginalDistribution[k]);
-				}
-			}
+			columnToRemove = columnMultiple(posteriorDistributionMatrix, j);
 		}
+
+		addMatrixColumn(posteriorDistributionMatrix, hyperDistributionMatrix, j);
+
 	}
 
+	console.log('the end GH', hyperDistributionMatrix, finalMarginalDistribution);
 	return {
 		matrix: hyperDistributionMatrix, 
 		distribution: finalMarginalDistribution 
@@ -138,18 +101,18 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 
 var channelMatrix = createMatrix(3,4,'');
 channelMatrix.data = [[1/2, 1/2, 0, 0], [0, 1/4, 1/2, 1/4], [1/2, 1/3, 1/6, 0]];
-console.log(channelMatrix);
+var priorProbability = [1/4,1/2,1/4];
 
-var priorProbability = [1/4,1/2,1/4]
-console.log(priorProbability);
+console.log("IN1", channelMatrix);
+console.log("P1",priorProbability);
 
 var jointMatrix = calculateJointDistribution(priorProbability, channelMatrix);
 console.log("joint", jointMatrix);
 
 var  marginalDistribution = calculateMarginalDistribution(jointMatrix);
-console.log("marginal", marginalDistribution);
+// console.log("marginal", marginalDistribution);
 
-var posteriorDistribution = calculatePosteriorDistributions(jointMatrix, marginalDistribution);
+var posteriorDistribution = calculatePosteriorDistribution(jointMatrix, marginalDistribution);
 console.log("posterior" , posteriorDistribution);
 
 var object = getHyperDistribution(posteriorDistribution.matrix, marginalDistribution);
@@ -162,13 +125,13 @@ var m2 = createMatrix(4,4,0);
 m2.data = [[1/2, 1/6, 1/3, 0], [0, 1/3, 2/3, 0], [0, 1/2, 0, 1/2], [1/4, 1/4, 1/2, 0]]
 var prior2 = [1/3, 1/3, 0, 1/3]
 
-console.log("m2", m2);
-console.log("prior", prior2);
+console.log("IN2", m2);
+console.log("P2", prior2);
 var joint2 = calculateJointDistribution(prior2, m2);
-console.log("j2", joint2);
+// console.log("j2", joint2);
 var marginal2 = calculateMarginalDistribution(joint2);
-console.log("marg2", marginal2);
-var posterior = calculatePosteriorDistributions(joint2, marginal2);
+// console.log("marg2", marginal2);
+var posterior = calculatePosteriorDistribution(joint2, marginal2);
 console.log("post", posterior);
 var hyper = getHyperDistribution(posterior, marginal2);
 console.log("hiper2", hyper.matrix);
