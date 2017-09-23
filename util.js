@@ -18,8 +18,6 @@ var createMatrix = function(numRows, numColumns, defaultValue){
 	return array;
 }
 
-
-
 /*
 	@Function: addColumn
 	@Param: matrix, values
@@ -30,7 +28,7 @@ var createMatrix = function(numRows, numColumns, defaultValue){
 
 var addColumn = function(matrix, values){
 	if(values.length > matrix.rows){
-		console.log("Error - This column has more rows than the original matrix.");
+		alert("Error - This column has more rows than the original matrix.");
 		return;
 	}
 
@@ -43,7 +41,7 @@ var addColumn = function(matrix, values){
 
 var addMatrixColumn = function(matrixSource, matrixDest, columnIndex){	
 	if(matrixSource.rows != matrixDest.rows){
-		console.log("Error - Cannot copy column. Number of rows is different.");
+		alert("Error - Cannot copy column. Number of rows is different.");
 		return;
 	}
 
@@ -55,22 +53,21 @@ var addMatrixColumn = function(matrixSource, matrixDest, columnIndex){
 }
 
 var removeColumn = function(matrix, columnIndex){
-	console.log('\tREMOVE COL', columnIndex);
 
 	var retMatrix = createMatrix(matrix.rows, matrix.columns-1, 0);
+
 	var k;
-	
 	for(var i = 0; i < matrix.rows; i++){
 		k = 0;
 		for(var j = 0; j < matrix.columns; j++){
-			if( j == columnIndex){			 	
-				break;
+			if( j == columnIndex){	
+				continue;
 			}
+
 			retMatrix.data[i][k] = matrix.data[i][k];
 			k++;
 		}
 	}	
-	console.log('ret matrix in', retMatrix);
 	return retMatrix;
 }
 
@@ -87,26 +84,41 @@ var columnIsZero = function(matrixObject, columnIndex){
 var columnMultiple = function(matrix, j){
 	var prevScale, currScale, equal;
 
-	if(matrix.rows >= 1){ 
+	if(matrix.rows <= 1){ 
 		return -1;
 	}
 
+	//tratar o caso da matriz com 1 linha 
+
+
 	for(var k = j+1; k < matrix.columns; k++){
+
+		if(matrix.data[0][k] == 0 || matrix.data[1][k] == 0){
+			// contornar esse caso 
+		}
+
 		prevScale = matrix.data[0][j]/matrix.data[0][k];
 		currScale = matrix.data[1][j]/matrix.data[1][k];
 
+
 		if(prevScale != currScale){
 			continue;
+
 		}
 		else{
 			equal = true;
 			for(var i = 2; i < matrix.rows; i++){
-				currScale = prevScale;
+				
+				if(matrix.data[i][k] == 0){
+					continue;
+				}
 				currScale = matrix.data[i][j]/matrix.data[i][k];
+				
 				if(prevScale != currScale){
 					equal = false;
 					break;
 				}
+				prevScale = currScale;
 			}
 
 			if( equal ){
