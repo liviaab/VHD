@@ -28,7 +28,6 @@ var calculateMarginalDistribution = function(jointMatrix){
 }
 
 
-
 var calculatePosteriorDistribution = function(jointMatrix, initialMarginalDistribution){
 	var marginalDistribution = [];
 	var returnMatrix = createMatrix(jointMatrix.rows, 0, 0);
@@ -59,6 +58,7 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 	// check if there are scaled columns
 	var hyperDistributionMatrix = createMatrix(posteriorDistributionMatrix.rows, 0, 0);
 	var finalMarginalDistribution = [];
+	var columnToRemove;
 	var removedColumns = [];
 
 
@@ -69,10 +69,9 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 
 		finalMarginalDistribution.push(marginalDistributionY[j]);
 
-		var columnToRemove = columnMultiple(posteriorDistributionMatrix, j);
+		columnToRemove = columnMultiple(posteriorDistributionMatrix, j);
 		if(columnToRemove == -1){
 			addMatrixColumn(posteriorDistributionMatrix, hyperDistributionMatrix, j);
-
 		}
 		else{
 			while( columnToRemove != -1){
@@ -113,7 +112,8 @@ var object = getHyperDistribution(posteriorDistribution.matrix, marginalDistribu
 console.log("matriz", object.matrix);
 console.log("distribution", object.distribution);
 
-console.log("\t\tOK");
+console.log("\t\tOK"); 
+
 
 var m2 = createMatrix(4,4,0);
 m2.data = [[1/2, 1/6, 1/3, 0], [0, 1/3, 2/3, 0], [0, 1/2, 0, 1/2], [1/4, 1/4, 1/2, 0]]
