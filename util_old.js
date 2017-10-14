@@ -9,7 +9,7 @@
 *	@param {Number} numColumns
 *	@param {Object} defaultValue - pode ser numero, caractere ou string
 *
-*	@return {Object} - matriz
+*	@returns {Object} - matriz
 */
 var createMatrix = function(numRows, numColumns, defaultValue){
 	var matrix = {
@@ -37,7 +37,7 @@ var createMatrix = function(numRows, numColumns, defaultValue){
 *	@param {Object} matrix 
 *	@param {Array} values 
 *
-*	@return {Object} - matriz com a nova coluna
+*	@returns {Object} - matriz com a nova coluna
 */
 var addColumn = function(matrix, values){
 	if(values.length > matrix.rows){
@@ -86,6 +86,7 @@ var addMatrixColumn = function(matrixSource, matrixDest, columnIndex){
 *
 *	@return {Object} - objeto matriz sem a coluna no indice indicado
 */
+
 var removeColumn = function(matrix, columnIndex){
 
 	var retMatrix = createMatrix(matrix.rows, matrix.columns-1, 0);
