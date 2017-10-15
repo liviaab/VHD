@@ -3,7 +3,7 @@
 *	Cria um objeto matriz com três propriedades:
 *	- rows: quantidade de linhas
 *	- columns: quantidade de colunas
-*	- data: os valores que a matriz armazena
+*	- data: os valores que a matriz armazena, linhas em forma de array
 *	
 *	@param {Number} numRows - number of rows
 *	@param {Number} numColumns - number of columns
