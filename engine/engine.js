@@ -20,10 +20,7 @@ var getJointDistribution = function(priorProbability, channelMatrix){
 	return jointMatrix;
 }
 
-
 var getMarginalDistributionColumns = function(jointMatrix){
-	//array marginalDistributionY ;
-	//sum the columns of J
 	var marginalDistribution = [];
 
 	for(var j = 0; j < jointMatrix.columns ; j++){
@@ -38,8 +35,6 @@ var getMarginalDistributionColumns = function(jointMatrix){
 }
 
 var getMarginalDistributionRows = function(jointMatrix){
-	//array marginalDistributionY ;
-	//sum the columns of J
 	var marginalDistribution = [];
 
 	for(var i = 0; i < jointMatrix.rows ; i++){
@@ -52,7 +47,6 @@ var getMarginalDistributionRows = function(jointMatrix){
 	}
 	return marginalDistribution;
 }
-
 
 var getPosteriorDistribution = function(jointMatrix, initialMarginalDistribution){
 	var marginalDistribution = [];

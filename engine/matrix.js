@@ -5,9 +5,9 @@
 *	- columns: quantidade de colunas
 *	- data: os valores que a matriz armazena, linhas em forma de array
 *	
-*	@param {Number} numRows - number of rows
-*	@param {Number} numColumns - number of columns
-*	@param {Array} data - The contained data 
+*	@param {Number} numRows 
+*	@param {Number} numColumns 
+*	@param {Array} data 
 *
 */
 function Matrix(numRows, numColumns, data){
@@ -149,7 +149,6 @@ Matrix.prototype.removeColumn = function(columnIndex){
 	this.columns = retMatrix.columns;
 };
 
-
 /*
 *	Verifica se todos os valores da coluna indicada sao zero. 
 *
@@ -169,7 +168,6 @@ Matrix.prototype.isColumnZero = function(columnIndex){
 
 	return (sum == 0)? true : false;	
 };
-
 
 /*
 *	Retorna o indice da primeira ocorrencia de uma coluna que é multipla do indice da coluna dada
