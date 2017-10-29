@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Engine</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/github.css">
+        <link rel="stylesheet" href="assets/css/index.css">
+	</head>
+	<body>
+        <div class="container-fluid" >
+        
+        <div>
+            <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand" href="#">Home</a>
+            </nav>
+        </div>
+        <br>
+            <div class="col-md-6">
+                <div> Input Prior Distribution
+                <span class="glyphicon glyphicon-info-sign" id="info-prior" data-toggle="tooltip" data-placement="top" 
+                    title="Please use fractions or decimal format: 0.*
+    Delimiters: space, enter and comma."></span>
+                </div>
+
+                <input type="text"  id="prior-values"/>
+                
+                <div> <button type="button" id="btn-set-values" class="btn btn-default">Set Matrix Values</button></div>    
+            </div>
+            
+            <div  class="col-md-6">
+                <div>Channel Matrix</div>
+                <div class="channel-values"></div>
+            </div>
+
+        </div>
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+        <script src="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
+        <script src="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput-angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/rainbow.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/generic.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/html.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/javascript.js"></script>
+        
+        <script src="https://d3js.org/d3.v4.min.js"></script> 
+
+		<script src="engine/exception.js"></script>
+		<script src="engine/matrix.js"></script>
+		<script src="engine/engine.js"></script>
+		<script src="engine/test.js"></script>
+        <script src="assets/js/index3.js"></script>
+        
+	</body>
+</html>
