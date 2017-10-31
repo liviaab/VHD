@@ -53,17 +53,34 @@ var emptyTextBox = function(){
 */
 
 var setValues = function(){    
-    priorValues = $("#prior-values").tagsinput('items').map(Number);
-
+    var temp1, temp2;
+    priorValues = $("#prior-values").tagsinput('items');
+    var priorValues_decimal = [];
     // validate entries
     for (var i = 0; i < priorValues.length ; i++) {
-        if (isNaN(priorValues[i])){
-            alert("The value at index "+ i + " is NaN"); 
+        temp1 = priorValues[i].split('/');
+
+        if(temp1.length > 2){
+            alert("Invalid value '"+ priorValues[i] + "' is NaN");
+            $("#prior-values").tagsinput('removeAll');   
+            return;
+        }
+        else if(temp1.length == 2){
+            temp2 = Number(temp1[0])/Number(temp1[1]);
+        }
+        else{
+            temp2 = Number(temp1[0]);
+        }
+
+        if (isNaN(temp2)){
+            alert("The value '"+ priorValues[i] + "' is NaN"); 
             //throw new Exception("The value at index "+ key + " is NaN");      
             $("#prior-values").tagsinput('removeAll');  
             return;     
         }
+        priorValues_decimal.push(temp2);
     }
+    priorValues = priorValues_decimal;
     console.log(priorValues);
     addChannelMatrix();
     addButtons();
