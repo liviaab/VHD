@@ -2,7 +2,6 @@
     Global Variables 
 */
 
-
 var priorValues = []
 var channelMatrix = []
 
@@ -16,22 +15,8 @@ $("#btn-set-values").click(function(){
 });
 
 $(".channel-values").on("click","#btn-go", function(){
-    alert("Fazer calculos!");
-
-    // var array = [];
-
-    // $('.prior-distr-values table tr').each(function() {
-
-    //     //var values = [];
-
-    //     $(this).find(" td input").each(function(){
-    //          array.push( $(this).val());
-    //     });
-
-        
-    //     console.log(array);
-    // });
-
+    getChannelMatrixValues();
+    checkElementsChannelMatrix();
 });
 
 $(".channel-values").on("click","#btn-clear", function(){
@@ -48,22 +33,28 @@ var emptyTextBox = function(){
     return $("#prior-values").tagsinput('items').length == 0 ;
 }
 
+var checkElementsChannelMatrix = function(){
+    if(channelMatrix.length%priorValues.length != 0 ){
+        alert("There are different quantities of output numbers in the channel matrix");
+        //throw new Exception("There are different quantities of output numbers in the channel matrix");      
+        return false;
+    }
+    return true;
+}
+
 /* 
     Methods
 */
 
-var setValues = function(){    
-    var temp1, temp2;
-    priorValues = $("#prior-values").tagsinput('items');
-    var priorValues_decimal = [];
-    // validate entries
-    for (var i = 0; i < priorValues.length ; i++) {
-        temp1 = priorValues[i].split('/');
+var getNumericValues = function(array){
+    var ret = [];
+     for (var i = 0; i < array.length ; i++) {
+        temp1 = array[i].split('/');
 
         if(temp1.length > 2){
-            alert("Invalid value '"+ priorValues[i] + "' is NaN");
-            $("#prior-values").tagsinput('removeAll');   
-            return;
+            alert("Invalid value '"+ array[i] + "' is NaN");
+            //$("#prior-values").tagsinput('removeAll');   
+            return null;
         }
         else if(temp1.length == 2){
             temp2 = Number(temp1[0])/Number(temp1[1]);
@@ -73,24 +64,33 @@ var setValues = function(){
         }
 
         if (isNaN(temp2)){
-            alert("The value '"+ priorValues[i] + "' is NaN"); 
+            alert("The value '"+ array[i] + "' is NaN"); 
             //throw new Exception("The value at index "+ key + " is NaN");      
-            $("#prior-values").tagsinput('removeAll');  
-            return;     
+            //$("#prior-values").tagsinput('removeAll');  
+            return null;     
         }
-        priorValues_decimal.push(temp2);
+        ret.push(temp2);
     }
-    priorValues = priorValues_decimal;
+    return ret;
+}
+
+var setValues = function(){    
+    var temp1, temp2;
+    
+    priorValues = getNumericValues( $("#prior-values").tagsinput('items'));
+    if(priorValues == null){
+        $("#prior-values").tagsinput('removeAll');  
+    }
     console.log(priorValues);
     addChannelMatrix();
     addButtons();
     
     $("#btn-go").show();
     $("#btn-clear").show();
+    return priorValues;
 }
 
-
-var addChannelMatrix = function(numInputs, numOutputs){
+var addChannelMatrix = function(){
     $('.channel-values').html('');
     for(var i =0 ; i < priorValues.length ; i++){
         var input = document.createElement('input');
@@ -108,7 +108,6 @@ var addButtons = function(){
     $('.channel-values').append('<button type="submit" id="btn-clear" class="btn btn-default">Clear</button>');    
 }
 
-
 var configureInputs = function(){
     $("input").tagsinput({
         allowDuplicates: true,
@@ -116,8 +115,33 @@ var configureInputs = function(){
         delimiter: ','
     });
 }
+
+var getChannelMatrixValues = function(){
+    channelMatrix = [];
+    var temp = [];
+    $('.channel-values').children('input').each(function () {
+        temp = getNumericValues($(this).tagsinput('items'));
+        if(temp == null){
+            $(this).tagsinput('removeAll');
+        }else{
+            for(var i = 0; i < temp.length; i++ ){
+                channelMatrix.push(temp[i]);      
+            }           
+        }
+    });
+    console.log(channelMatrix);
+    return channelMatrix;
+}
+
+
+var getPriorValues = function(){
+    return priorValues;
+}
+
+var getChannelMatrix = function(){
+    return channelMatrix;
+}
+
 $(document).ready(function(){
-
-configureInputs();
-
+    configureInputs();
 });
