@@ -4,6 +4,29 @@
 
 var priorValues = []
 var channelMatrix = []
+var numEntries = 0;
+var numOutputs = 0;
+
+/*
+    Getters
+*/
+
+var getPriorValues = function(){
+    return priorValues;
+}
+
+var getChannelMatrix = function(){
+    return channelMatrix;
+}
+
+var getNumEntries = function(){
+    return numEntries;
+}
+
+var getNumOutputs = function(){
+    return numOutputs;
+}
+
 
 /*
     Events
@@ -16,7 +39,9 @@ $("#btn-set-values").click(function(){
 
 $(".channel-values").on("click","#btn-go", function(){
     getChannelMatrixValues();
-    checkElementsChannelMatrix();
+    if(checkElementsChannelMatrix()){
+            teste(); 
+    }       
 });
 
 $(".channel-values").on("click","#btn-clear", function(){
@@ -34,9 +59,14 @@ var emptyTextBox = function(){
 }
 
 var checkElementsChannelMatrix = function(){
+
     if(channelMatrix.length%priorValues.length != 0 ){
         alert("There are different quantities of output numbers in the channel matrix");
         //throw new Exception("There are different quantities of output numbers in the channel matrix");      
+        return false;
+    }
+    if(channelMatrix.length != numEntries* numOutputs){
+        alert("Missing entries in the channel matrix");
         return false;
     }
     return true;
@@ -81,7 +111,7 @@ var setValues = function(){
     if(priorValues == null){
         $("#prior-values").tagsinput('removeAll');  
     }
-    console.log(priorValues);
+    //console.log(priorValues);
     addChannelMatrix();
     addButtons();
     
@@ -118,7 +148,10 @@ var configureInputs = function(){
 
 var getChannelMatrixValues = function(){
     channelMatrix = [];
+    numEntries = 0;
+    numOutputs = 0;
     var temp = [];
+    
     $('.channel-values').children('input').each(function () {
         temp = getNumericValues($(this).tagsinput('items'));
         if(temp == null){
@@ -126,19 +159,12 @@ var getChannelMatrixValues = function(){
         }else{
             for(var i = 0; i < temp.length; i++ ){
                 channelMatrix.push(temp[i]);      
-            }           
+            }   
+            numOutputs = temp.length;  
         }
+        numEntries++;
     });
-    console.log(channelMatrix);
-    return channelMatrix;
-}
-
-
-var getPriorValues = function(){
-    return priorValues;
-}
-
-var getChannelMatrix = function(){
+    //console.log(channelMatrix);
     return channelMatrix;
 }
 

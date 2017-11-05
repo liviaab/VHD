@@ -49,7 +49,10 @@ console.log('hyper:', hyper);
 //------------------------------------------------------------------------------------
 
 console.log('Teste 2');
-var channel = new Matrix( 4, 4, [1/2,1/6,1/3,0,0,1/3,2/3,0,0,1/2,0,1/2,1/4,1/4,1/2,0]);
+var channel = new Matrix( 4, 4, [1/2,1/6,1/3,0,
+	0,1/3,2/3,0,
+	0,1/2,0,1/2,
+	1/4,1/4,1/2,0]);
 var prior = [1/3,1/3,0,1/3];
 
 var joint = getJointDistribution(prior, channel);
