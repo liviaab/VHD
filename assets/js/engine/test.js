@@ -28,27 +28,34 @@ console.log(matrix.firstMultipleOfColumn(3));
 //console.log(matrix.firstColumnMultiple(4));
 */
 //------------------------------------------------------------------------------------
-/*
+
 console.log('Teste 1');
 var channel = new Matrix( 3, 4, [1/2, 1/2, 0, 0, 0, 1/4, 1/2, 1/4, 1/2, 1/3, 1/6, 0]);
 var prior = [1/4,1/2,1/4];
 
 var joint = getJointDistribution(prior, channel);
-console.log("joint:", joint); // ok 
+console.log("joint:"); 
+printMatrix(joint);
 
 var marginalY = getMarginalDistributionColumns(joint);
 console.log('marginal:', marginalY)
 
 var posterior = getPosteriorDistribution(joint, marginalY)
-console.log('posterior:', posterior)
+console.log('posterior:')
+printMatrix(posterior.matrix);
 
 var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
-console.log('hyper:', hyper);
-*/
+console.log('hyper:');
+printMatrix(hyper.matrix)
+
+var getHyper = function(){
+	return hyper;
+}
+
 
 //------------------------------------------------------------------------------------
 
-console.log('Teste 2');
+/*console.log('Teste 2');
 var channel = new Matrix( 4, 4, [1/2,1/6,1/3,0,
 	0,1/3,2/3,0,
 	0,1/2,0,1/2,
@@ -56,16 +63,19 @@ var channel = new Matrix( 4, 4, [1/2,1/6,1/3,0,
 var prior = [1/3,1/3,0,1/3];
 
 var joint = getJointDistribution(prior, channel);
-console.log("joint:", joint); // ok 
+console.log("joint:");  
+printMatrix(joint);
 
 var marginalY = getMarginalDistributionColumns(joint);
 console.log('marginal:', marginalY)
 
 var posterior = getPosteriorDistribution(joint, marginalY)
-console.log('posterior:', posterior)
+console.log('posterior:')
+printMatrix(posterior.matrix);
 
 var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
-console.log('hyper:', hyper);
+console.log('hyper:');
+printMatrix(hyper.matrix)*/
 
 
 //------------------------------------------------------------------------------------

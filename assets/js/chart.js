@@ -1,8 +1,27 @@
 $(document).ready(function(){
-	setDefault();
+	var hyperDistribution = getHyper();
+	dataPoints = matrixTo3DData(hyperDistribution.matrix);
+	setDefault(dataPoints);
 });
 
-var drawChart = function(alphaAngle, betaAngle){
+var drawChart = function(alphaAngle, betaAngle, dataPoints){
+	// Give the points a 3D feel by adding a radial gradient
+	Highcharts.setOptions({
+	    colors: $.map(Highcharts.getOptions().colors, function (color) {
+	        return {
+	            radialGradient: {
+	                cx: 0.4,
+	                cy: 0.3,
+	                r: 0.5
+	            },
+	            stops: [
+	                [0, color],
+	                [1, Highcharts.Color(color).brighten(-0.2).get('rgb')]
+	            ]
+	        };
+	    })
+	});
+
 	// Set up the chart
 		var chart = new Highcharts.Chart({
 	        chart: {
@@ -33,7 +52,11 @@ var drawChart = function(alphaAngle, betaAngle){
 	            scatter: {
 	                width: 10,
 	                height: 10,
-	                depth: 10
+	                depth: 10,
+	                dataLabels: {
+	                    format: "{point.name}",
+	                    enabled: true
+	                },
 	            }
 	        },
 	        yAxis: {
@@ -58,17 +81,23 @@ var drawChart = function(alphaAngle, betaAngle){
 	        legend: {
 	            enabled: false
 	        },
-	        series: [{
-	            lineWidth: 1,
-	            name: 'Reading',
-	            marker: {
-	                enabled: false
-	            },
-	            data: [[1,0,0],
-			    	 [0,1,0],
-			    	 [0,0,1],
-			    	 [1,0,0]] 
-	    	}]
+
+	        series: [
+		        {
+		            lineWidth: 1,
+		            name: 'Reading',
+		            marker: {
+		                enabled: false
+		            },
+		            data: [[1,0,0],
+				    	 [0,1,0],
+				    	 [0,0,1],
+				    	 [1,0,0]] 
+		    	},
+		    	{
+		    		data: dataPoints
+		    	}
+	    	]
 	    });
 	    return chart;    
 }
@@ -106,9 +135,14 @@ var setDraggableChart = function(chart){
     });
 }
 
-var setDefault = function(){
+var setDefault = function(data){
 	$('#container').html("");
-	var chart = drawChart(60, 60);
+	var chart = drawChart(60, 60, data);
 	setDraggableChart(chart);	
 }
 
+var set2D = function(data){
+	$('#container').html("");
+	var chart = drawChart(0, 0, data);
+	setDraggableChart(chart);	
+}

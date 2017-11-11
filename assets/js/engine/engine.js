@@ -151,3 +151,7 @@ var sumArray = function(array){
 	}
 	return result;
 }
+
+var printMatrix = function(matrix){
+	console.table(matrix.data);
+}
