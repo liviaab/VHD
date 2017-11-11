@@ -27,29 +27,33 @@ var getNumOutputs = function(){
     return numOutputs;
 }
 
-
 /*
     Events
 */
-$("#btn-set-values").click(function(){
-    if(!emptyTextBox()){
-        setValues();
-    } 
-});
+$(document).ready(function(){
+    configureInputs();
 
-$(".channel-values").on("click","#btn-go", function(){
-    getChannelMatrixValues();
-    if(checkElementsChannelMatrix()){
-            teste(); 
-    }       
-});
+    $("#btn-set-values").click(function(){
+        if(!emptyTextBox()){
+            setValues();
+        } 
+    });
 
-$(".channel-values").on("click","#btn-clear", function(){
-    $('#prior-values').tagsinput('removeAll');
-    $('.channel-values').html('');
-    $(this).hide();
-    $("#btn-go").hide();
-} );
+    $(".channel-values").on("click","#btn-go", function(){
+        getChannelMatrixValues();
+        if(checkElementsChannelMatrix()){
+                teste(); 
+        }       
+        drawChart();
+    });
+
+    $(".channel-values").on("click","#btn-clear", function(){
+        $('#prior-values').tagsinput('removeAll');
+        $('.channel-values').html('');
+        $(this).hide();
+        $("#btn-go").hide();
+    } );
+});
 
 /*
     Validations
@@ -168,6 +172,3 @@ var getChannelMatrixValues = function(){
     return channelMatrix;
 }
 
-$(document).ready(function(){
-    configureInputs();
-});

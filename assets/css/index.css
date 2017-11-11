@@ -1,3 +1,10 @@
 .bootstrap-tagsinput {
   width: 100% !important;
 }
+
+#container{
+	min-width: 400px; 
+	max-width: 400px; 
+	height: 400px; 
+	margin: 0 auto;
+}
