@@ -1,10 +1,10 @@
 $(document).ready(function(){
 	var hyperDistribution = getHyper();
-	dataPoints = matrixTo3DData(hyperDistribution.matrix);
-	setDefault(dataPoints);
+	var priorDistribution = getPrior();
+	setDefault(matrixTo3DData(hyperDistribution, "Output"), priorTo3DData(priorDistribution, "Prior") );
 });
 
-var drawChart = function(alphaAngle, betaAngle, dataPoints){
+var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	// Give the points a 3D feel by adding a radial gradient
 	Highcharts.setOptions({
 	    colors: $.map(Highcharts.getOptions().colors, function (color) {
@@ -43,11 +43,11 @@ var drawChart = function(alphaAngle, betaAngle, dataPoints){
 	            }
 	        },
 	        title: {
-	            text: 'Draggable box'
-	        },
+	            text: 'Hyper Distribution'
+	        },/*
 	        subtitle: {
 	            text: 'subtitle'
-	        },
+	        },*/
 	        plotOptions: {
 	            scatter: {
 	                width: 10,
@@ -59,24 +59,48 @@ var drawChart = function(alphaAngle, betaAngle, dataPoints){
 	                },
 	            }
 	        },
+	        tooltip:{
+	        	formatter: function(){
+	        		return  '<b>'+ this.series.name +' - '+ this.point.name + '</b><br/>' +
+	        				'x:' + this.point.x + '<br/>' +
+	        				'y:' + this.point.y + '<br/>'+
+	        				'z:' + this.point.z 
+	        	}
+	        },
+
 	        yAxis: {
 	            min: 0,
 	            max: 2,
 		        tickInterval: 0.5,
-		        title: 'x2'
+		        labels: {
+		            skew3d: true
+		        },
+		        title:{
+		        	text: 'x2'
+		        }
 	        },
 	        xAxis: {
 	            min: 0,
 	            max: 2,
 		        tickInterval: 0.5,
-		        title: 'x1',
+		        labels: {
+		            skew3d: true
+		        },
+		        title:{ 
+		        	text: 'x1'
+		        },
 	            gridLineWidth: 1
 	        },
 	        zAxis: {
 	            min: 0,
 	            max: 2,
 		        tickInterval: 0.5,
-		        title:'x3',
+		        labels: {
+		            skew3d: true
+		        },
+		        title:{
+		        	text:'x3'
+		        },
 	        },
 	        legend: {
 	            enabled: false
@@ -85,7 +109,7 @@ var drawChart = function(alphaAngle, betaAngle, dataPoints){
 	        series: [
 		        {
 		            lineWidth: 1,
-		            name: 'Reading',
+		            name: 'Limits',
 		            marker: {
 		                enabled: false
 		            },
@@ -93,12 +117,11 @@ var drawChart = function(alphaAngle, betaAngle, dataPoints){
 				    	 [0,1,0],
 				    	 [0,0,1],
 				    	 [1,0,0]] 
-		    	},
-		    	{
-		    		data: dataPoints
-		    	}
-	    	]
-	    });
+		    	},		    	
+		    	outputPoints,
+		    	priorPoints
+	    	]	    	
+	    });	
 	    return chart;    
 }
 
@@ -135,14 +158,14 @@ var setDraggableChart = function(chart){
     });
 }
 
-var setDefault = function(data){
+var setDefault = function(outputPoints, priorPoints){
 	$('#container').html("");
-	var chart = drawChart(60, 60, data);
+	var chart = drawChart(60, 60, outputPoints, priorPoints);
 	setDraggableChart(chart);	
 }
 
-var set2D = function(data){
+var set2D = function(outputPoints, priorPoints){
 	$('#container').html("");
-	var chart = drawChart(0, 0, data);
+	var chart = drawChart(0, 0, outputPoints, priorPoints);
 	setDraggableChart(chart);	
 }

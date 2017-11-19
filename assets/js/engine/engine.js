@@ -1,7 +1,38 @@
 /*
-Considerações:
-A matriz que representa o canal tem como entradas as linhas e como saída as colunas;
-Todas as matrizes aqui utilizadas DEVEM ser criadas com o método Matrix();
+	Globals
+*/
+
+var _priorDistribution = [];
+var _channelMatrix = []
+var _jointDistribution = [];
+var _posteriorDistribution = [];
+var _hyperDistribution = [];
+
+var getPrior = function(){
+	return _priorDistribution;
+}
+
+var getChannel = function(){
+	return _channelMatrix;
+}
+
+var getJoint = function(){
+	return _jointDistribution;
+}
+
+var getPosterior = function(){
+	return _posteriorDistribution;
+}
+
+var getHyper = function(){
+	return _hyperDistribution;
+}
+
+
+/*
+	Considerações:
+	A matriz que representa o canal tem como entradas as linhas e como saída as colunas;
+	Todas as matrizes aqui utilizadas DEVEM ser criadas com o método Matrix();
 */
 
 var getJointDistribution = function(priorProbability, channelMatrix){
@@ -17,6 +48,9 @@ var getJointDistribution = function(priorProbability, channelMatrix){
 		jointMatrix.addColumn(row);
 	}
 
+	_priorDistribution = priorProbability;
+	_channelMatrix = channelMatrix;
+	_jointDistribution = jointMatrix;
 	return jointMatrix;
 }
 
@@ -68,7 +102,8 @@ var getPosteriorDistribution = function(jointMatrix, initialMarginalDistribution
 			jointMatrix.data[i][j] = jointMatrix.data[i][j]/initialMarginalDistribution[j]; 	
 		}	
 	}
-	
+	_posteriorDistribution = jointMatrix;
+
 	return {
 		matrix: jointMatrix,
 		distribution: initialMarginalDistribution
@@ -106,6 +141,7 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 		}
 	}
 
+	_hyperDistribution = posteriorDistributionMatrix;
 	return {
 		matrix: posteriorDistributionMatrix, 
 		distribution: finalMarginalDistribution 

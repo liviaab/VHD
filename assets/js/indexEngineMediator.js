@@ -37,21 +37,41 @@ var check3DVisualization = function(array){
 	Methods
 */
 
-var matrixTo3DData = function(matrix){
+var matrixTo3DData = function(matrix, serieName){
 	var retData = [];
 
 	for(j = 0; j < matrix.columns; j++){
-		var temp = [] /*{
-			name: 'y'+ (j+1).toString(),
-			data: []
-		}*/
+		var name = 'y'+ (j+1).toString();
+		var temp = [name] ;
 
 		for(i = 0; i < matrix.rows; i++){
 			temp.push(matrix.data[i][j]);
 		}
 		retData.push(temp);
 	}
-	
-	console.log(retData);
+
+	retData = {data: retData, name: serieName };
+	console.log('retdata:', retData);
+	return retData;
+}
+
+var priorTo3DData = function(array, serieName){
+	if(array.length > 3){
+		// console.log("3D visualization is not available");
+		alert("3D visualization is not available");
+		// throw new Exception("3D visualization is not available");
+	}
+
+	var name = 'π';
+	var retData = [], temp = [];
+
+	temp.push(name);
+	for(var i = 0; i < array.length ; i++ ){
+		temp.push(array[i]);
+	}
+	retData.push(temp);
+
+	var retData = {data: retData, name: serieName };
+	console.log('retdata:', retData);
 	return retData;
 }

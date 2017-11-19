@@ -48,9 +48,6 @@ var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
 console.log('hyper:');
 printMatrix(hyper.matrix)
 
-var getHyper = function(){
-	return hyper;
-}
 
 
 //------------------------------------------------------------------------------------
