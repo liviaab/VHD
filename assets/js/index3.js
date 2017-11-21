@@ -39,7 +39,7 @@ $(document).ready(function(){
         } 
     });
 
-    $(".channel-values").on("click","#btn-go", function(){
+    $(".channel-values").on("click","#btn-Visualize", function(){
         getChannelMatrixValues();
         if(checkElementsChannelMatrix()){
                 teste(); 
@@ -51,7 +51,7 @@ $(document).ready(function(){
         $('#prior-values').tagsinput('removeAll');
         $('.channel-values').html('');
         $(this).hide();
-        $("#btn-go").hide();
+        $("#btn-Visualize").hide();
     } );
 });
 
@@ -119,7 +119,7 @@ var setValues = function(){
     addChannelMatrix();
     addButtons();
     
-    $("#btn-go").show();
+    $("#btn-Visualize").show();
     $("#btn-clear").show();
     return priorValues;
 }
@@ -138,7 +138,7 @@ var addChannelMatrix = function(){
 }
 
 var addButtons = function(){
-    $('.channel-values').append('<button type="submit" id="btn-go" class="btn btn-default">Go</button><span>');
+    $('.channel-values').append('<button type="submit" id="btn-Visualize" class="btn btn-default">Visualize</button><span>');
     $('.channel-values').append('<button type="submit" id="btn-clear" class="btn btn-default">Clear</button>');    
 }
 

@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	var hyperDistribution = getHyper();
 	var priorDistribution = getPrior();
-	setDefault(matrixTo3DData(hyperDistribution, "Output"), priorTo3DData(priorDistribution, "Prior") );
+	var marginalDistribution = getMarginal();
+	setDefault(matrixTo3DData(hyperDistribution, marginalDistribution, "Output"), 
+		priorTo3DData(priorDistribution, getPriorRadius(marginalDistribution), "Prior") );
 });
 
 var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
@@ -62,9 +64,10 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	        tooltip:{
 	        	formatter: function(){
 	        		return  '<b>'+ this.series.name +' - '+ this.point.name + '</b><br/>' +
-	        				'x:' + this.point.x + '<br/>' +
-	        				'y:' + this.point.y + '<br/>'+
-	        				'z:' + this.point.z 
+	        				'x: ' + this.point.x + '<br/>' +
+	        				'y: ' + this.point.y + '<br/>'+
+	        				'z: ' + this.point.z + '<br/>'+
+	        				'p: ' + this.point.p
 	        	}
 	        },
 
@@ -111,7 +114,8 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 		            lineWidth: 1,
 		            name: 'Limits',
 		            marker: {
-		                enabled: false
+		                enabled: false,
+		                symbol: 'circle'
 		            },
 		            data: [[1,0,0],
 				    	 [0,1,0],

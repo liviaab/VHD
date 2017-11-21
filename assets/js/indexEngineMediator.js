@@ -37,38 +37,56 @@ var check3DVisualization = function(array){
 	Methods
 */
 
-var matrixTo3DData = function(matrix, serieName){
+//retorna um inteiro para ser o raio. Mapeia de 0 a 10 
+var mapRadius = function(radius){
+	return parseInt(radius * 10);
+}
+
+var getPriorRadius = function(outputDistribution){
+	var sum = 0;
+	for(var i = 0; i < outputDistribution.length; i++){
+		sum += mapRadius(outputDistribution[i]);
+	}
+	return sum;
+}
+
+var matrixTo3DData = function(matrix, weights, serieName ){
 	var retData = [];
+	for(j = 0; j < matrix.columns; j++){		
+		var temp = {};
+		
+		temp.name = 'y'+ (j+1).toString();
+		temp.x = matrix.data[0][j];
+		temp.y = matrix.data[1][j];
+		temp.z = matrix.data[2][j];
+		temp.p = weights[j];
+		console.log('raio '+name+': ', mapRadius(weights[j]));
+		temp.marker= {radius: mapRadius(weights[j])};
 
-	for(j = 0; j < matrix.columns; j++){
-		var name = 'y'+ (j+1).toString();
-		var temp = [name] ;
-
-		for(i = 0; i < matrix.rows; i++){
-			temp.push(matrix.data[i][j]);
-		}
 		retData.push(temp);
 	}
 
 	retData = {data: retData, name: serieName };
-	console.log('retdata:', retData);
+	console.log('retdata NOVO:', retData);
 	return retData;
+
 }
 
-var priorTo3DData = function(array, serieName){
+var priorTo3DData = function(array, radius, serieName){
 	if(array.length > 3){
 		// console.log("3D visualization is not available");
 		alert("3D visualization is not available");
 		// throw new Exception("3D visualization is not available");
 	}
 
-	var name = 'π';
-	var retData = [], temp = [];
+	var retData = [], temp = {};
 
-	temp.push(name);
-	for(var i = 0; i < array.length ; i++ ){
-		temp.push(array[i]);
-	}
+	temp.name = 'π';
+	temp.x = array[0];
+	temp.y = array[1];
+	temp.z = array[2];
+	temp.p = 1;
+	temp.marker= {radius: radius, symbol: 'circle'};
 	retData.push(temp);
 
 	var retData = {data: retData, name: serieName };

@@ -5,6 +5,7 @@
 var _priorDistribution = [];
 var _channelMatrix = []
 var _jointDistribution = [];
+var _marginalDistribution = []
 var _posteriorDistribution = [];
 var _hyperDistribution = [];
 
@@ -18,6 +19,10 @@ var getChannel = function(){
 
 var getJoint = function(){
 	return _jointDistribution;
+}
+
+var getMarginal = function(){
+	return _marginalDistribution;
 }
 
 var getPosterior = function(){
@@ -65,6 +70,7 @@ var getMarginalDistributionColumns = function(jointMatrix){
 		}	
 		marginalDistribution.push(sum);
 	}
+	_marginalDistribution = marginalDistribution;
 	return marginalDistribution;
 }
 
@@ -79,6 +85,7 @@ var getMarginalDistributionRows = function(jointMatrix){
 		}	
 		marginalDistribution.push(sum);
 	}
+	_marginalDistribution = marginalDistribution;
 	return marginalDistribution;
 }
 
