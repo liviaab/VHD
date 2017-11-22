@@ -21,20 +21,14 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 		var chart = new Highcharts.Chart({
 	        chart: {
 	            renderTo: 'container',
-	            margin: 100,
+	            margin: 10,
 	            type: 'scatter3d',
 	            options3d: {
 	                enabled: true,
 	                alpha: alphaAngle,
 	                beta: betaAngle,
-	                depth: 200,
-	                viewDistance: 10,
-
-	                frame: {
-	                    bottom: { size: 1, color: 'rgba(0,0,0,0.02)' },
-	                    // back: { size: 1, color: 'rgba(0,0,0,0.04)' },
-	                    // side: { size: 1, color: 'rgba(0,0,0,0.06)' }
-	                }
+	                depth: 600,
+	                viewDistance: 10 ,
 	            }
 	        },
 	        title: {
@@ -45,9 +39,6 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	        },*/
 	        plotOptions: {
 	            scatter: {
-	                width: 10,
-	                height: 10,
-	                depth: 10,
 	                dataLabels: {
 	                    format: "{point.name}",
 	                    enabled: true
@@ -85,7 +76,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 		        title:{ 
 		        	text: 'x1'
 		        },
-	            gridLineWidth: 1
+	            gridLineWidth: 1 
 	        },
 	        zAxis: {
 	            min: 0,
