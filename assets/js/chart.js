@@ -1,10 +1,3 @@
-$(document).ready(function(){
-	var hyperDistribution = getHyper();
-	var priorDistribution = getPrior();
-	var marginalDistribution = getMarginal();
-	setDefault(matrixTo3DData(hyperDistribution, marginalDistribution, "Output"), 
-		priorTo3DData(priorDistribution, getPriorRadius(marginalDistribution), "Prior") );
-});
 
 var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	// Give the points a 3D feel by adding a radial gradient

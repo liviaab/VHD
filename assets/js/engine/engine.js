@@ -33,6 +33,29 @@ var getHyper = function(){
 	return _hyperDistribution;
 }
 
+var setPrior = function(array){
+	return _priorDistribution;
+}
+
+var setChannel = function(matrix){
+	return _channelMatrix;
+}
+
+var setJoint = function(matrix){
+	return _jointDistribution;
+}
+
+var setMarginal = function(array){
+	return _marginalDistribution;
+}
+
+var setPosterior = function(matrix){
+	return _posteriorDistribution;
+}
+
+var setHyper = function(matrix){
+	return _hyperDistribution;
+}
 
 /*
 	Considerações:

@@ -1,25 +1,4 @@
-/*var teste = function(){
-	console.log('Teste 2');
-	var prior = getPriorValues();
-	var channelMatrix = getChannelMatrix();
-	var channel = new Matrix(getNumEntries(), getNumOutputs(), channelMatrix);
 
-	console.log(prior);
-	console.log(channelMatrix);
-	console.log(channel);
-
-	var joint = getJointDistribution(prior, channel);
-	console.log("joint:", joint);  
-
-	var marginalY = getMarginalDistributionColumns(joint);
-	console.log('marginal:', marginalY)
-
-	var posterior = getPosteriorDistribution(joint, marginalY)
-	console.log('posterior:', posterior)
-
-	var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
-	console.log('hyper:', hyper);
-}*/
 
 /*
 	Validations
@@ -39,7 +18,11 @@ var check3DVisualization = function(array){
 
 //retorna um inteiro para ser o raio. Mapeia de 0 a 10 
 var mapRadius = function(radius){
-	return parseInt(radius * 10);
+	var r = radius * 10;
+	if(r == 0 && radius > 0){
+		r = 1;
+	}
+	return r;
 }
 
 var getPriorRadius = function(outputDistribution){
@@ -60,14 +43,12 @@ var matrixTo3DData = function(matrix, weights, serieName ){
 		temp.y = matrix.data[1][j];
 		temp.z = matrix.data[2][j];
 		temp.p = weights[j];
-		console.log('raio '+name+': ', mapRadius(weights[j]));
 		temp.marker= {radius: mapRadius(weights[j])};
 
 		retData.push(temp);
 	}
 
 	retData = {data: retData, name: serieName };
-	console.log('retdata NOVO:', retData);
 	return retData;
 
 }
@@ -90,6 +71,11 @@ var priorTo3DData = function(array, radius, serieName){
 	retData.push(temp);
 
 	var retData = {data: retData, name: serieName };
-	console.log('retdata:', retData);
 	return retData;
+}
+
+var setChartParameters = function(priorDistribution, marginalDistribution, hyperDistribution ){
+
+	setDefault(matrixTo3DData(hyperDistribution, marginalDistribution, "Output"), 
+		priorTo3DData(priorDistribution, getPriorRadius(marginalDistribution), "Prior") );
 }

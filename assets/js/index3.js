@@ -16,7 +16,7 @@ var getPriorValues = function(){
 }
 
 var getChannelMatrix = function(){
-    return channelMatrix;
+    return new Matrix(numEntries, numOutputs, channelMatrix);
 }
 
 var getNumEntries = function(){
@@ -42,16 +42,32 @@ $(document).ready(function(){
     $(".channel-values").on("click","#btn-Visualize", function(){
         getChannelMatrixValues();
         if(checkElementsChannelMatrix()){
-                teste(); 
-        }       
-        drawChart();
+            var joint = getJointDistribution(getPriorValues(), getChannelMatrix());
+            // console.log("joint:"); 
+            // printMatrix(joint);
+
+            var marginalY = getMarginalDistributionColumns(joint);
+            // console.log('marginal:', marginalY)
+
+            var posterior = getPosteriorDistribution(joint, marginalY)
+            // console.log('posterior:')
+            // printMatrix(posterior.matrix);
+
+            var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
+            // console.log('hyper:');
+            // printMatrix(hyper.matrix)
+            setChartParameters(getPriorValues(),marginalY, hyper.matrix);
+            //drawChart();         
+        }   
     });
 
     $(".channel-values").on("click","#btn-clear", function(){
         $('#prior-values').tagsinput('removeAll');
+        $('#channel-values-title').html('');
         $('.channel-values').html('');
         $(this).hide();
         $("#btn-Visualize").hide();
+        $('#container').html('');
     } );
 });
 
@@ -69,6 +85,7 @@ var checkElementsChannelMatrix = function(){
         //throw new Exception("There are different quantities of output numbers in the channel matrix");      
         return false;
     }
+
     if(channelMatrix.length != numEntries* numOutputs){
         alert("Missing entries in the channel matrix");
         return false;
@@ -125,6 +142,7 @@ var setValues = function(){
 }
 
 var addChannelMatrix = function(){
+    $('#channel-values-title').html('Channel Matrix');
     $('.channel-values').html('');
     for(var i =0 ; i < priorValues.length ; i++){
         var input = document.createElement('input');

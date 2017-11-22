@@ -20,7 +20,7 @@
         <![endif]-->
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
@@ -30,19 +30,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/generic.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/html.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/javascript.js"></script>
-        
         <script src="https://d3js.org/d3.v4.min.js"></script> 
-
-        <script src="assets/js/engine/exception.js"></script>
-        <script src="assets/js/engine/matrix.js"></script>
-        <script src="assets/js/engine/engine.js"></script>
-        <script src="assets/js/engine/test.js"></script> 
-        <script src="assets/js/index3.js"></script>
-        <script src="assets/js/indexEngineMediator.js"></script>
         <script src="https://code.highcharts.com/highcharts-3d.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        
+        <script src="assets/js/engine/exception.js"></script>
+        <script src="assets/js/engine/matrix.js"></script>
+        <script src="assets/js/engine/engine.js"></script>
+        <!-- <script src="assets/js/engine/test.js"></script>  -->
+        <script src="assets/js/index3.js"></script>
+        <script src="assets/js/indexEngineMediator.js"></script>
         <script src="assets/js/chart.js"></script>
+
 	</head>
 	<body>
         <div class="container-fluid" >
@@ -66,9 +66,12 @@ Delimiters: space, enter and comma."></span>
         </div>
         
         <div  class="col-md-6">
-            <div>Channel Matrix</div>
+            <div id="channel-values-title"></div>
             <div class="channel-values"></div>
         </div>
-        </div>       
+        </div>
+        <div class="container-fluid" > 
+            <div id="container"></div>
+        </div>        
 	</body>
 </html>
