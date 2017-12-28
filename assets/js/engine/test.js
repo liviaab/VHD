@@ -48,6 +48,13 @@ var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
 console.log('hyper:');
 printMatrix(hyper.matrix)
 
+var data1 = matrixTo3DData(posterior.matrix, posterior.distribution, "Posterior");
+var data2 =  priorTo3DData(prior, 10, "Prior") ;
+
+$(document).ready(function() {
+ //setDefault(data1, data2);	
+ set2D(data1, data2);	
+}); 
 
 
 //------------------------------------------------------------------------------------
