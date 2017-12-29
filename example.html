@@ -6,23 +6,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/github.css">
-        <link rel="stylesheet" href="assets/css/index.css">
-
-        <script src="https://code.highcharts.com/highcharts.js"></script>
         <!-- If you need support for IE6, 7 or 8, you may include the oldie.js module in a conditional comment that 
         hides it from modern browsers-->
         <!--[if lt IE 9]>
         <script src="https://code.highcharts.com/modules/oldie.js"></script>
         <![endif]-->
 
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/github.css">
+        <link rel="stylesheet" href="assets/css/index.css">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
+        <!-- JQuery, Bootstrap, tagsinput, HighCharts  -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
         <script src="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
         <script src="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput-angular.min.js"></script>
@@ -30,48 +31,51 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/generic.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/html.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/javascript.js"></script>
-        <script src="https://d3js.org/d3.v4.min.js"></script> 
         <script src="https://code.highcharts.com/highcharts-3d.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         
+        <!-- Engine -->
         <script src="assets/js/engine/exception.js"></script>
         <script src="assets/js/engine/matrix.js"></script>
         <script src="assets/js/engine/engine.js"></script>
         <!-- <script src="assets/js/engine/test.js"></script>  -->
-        <script src="assets/js/index3.js"></script>
+        <script src="assets/js/index.js"></script>
         <script src="assets/js/indexEngineMediator.js"></script>
         <script src="assets/js/chart.js"></script>
 
 	</head>
 	<body>
-        <div class="container-fluid" >
-        
-        <div>
-            <nav class="navbar navbar-light bg-light justify-content-between">
-            <a class="navbar-brand" href="#">Home</a>
-            </nav>
-        </div>
-        <br>
-        <div class="col-md-6">
-            <div> Input Prior Distribution
-            <span class="glyphicon glyphicon-info-sign" id="info-prior" data-toggle="tooltip" data-placement="top" 
-                title="Please use fractions or decimal format: 0.*
-Delimiters: space, enter and comma."></span>
+        <div class="container-fluid" >        
+            <div>
+                <nav class="navbar sidebar">
+                    <a href="index.html">Home</a>
+                    <a href="example.html">Example</a>
+                    <a href="tryit.html">Try it</a>
+                    <a href="about.html">About</a>
+                </nav>
+            </div>
+            <br>
+            
+            <div class="page-content">                
+            <div class="col-md-6">
+                <div> Input Prior Distribution
+                <span class="glyphicon glyphicon-info-sign" id="info-prior" data-toggle="tooltip" data-placement="top" 
+                    title="Please use fractions or decimal format: '0.*' Delimiters: space, enter and comma."></span>
+                </div>
+
+                <input type="text"  id="prior-values"/>
+                
+                <div> <button type="button" id="btn-set-values" class="btn btn-default">Set Matrix Values</button></div>    
+            </div>
+            
+            <div  class="col-md-6">
+                <div id="channel-values-title"></div>
+                <div class="channel-values"></div>
             </div>
 
-            <input type="text"  id="prior-values"/>
-            
-            <div> <button type="button" id="btn-set-values" class="btn btn-default">Set Matrix Values</button></div>    
-        </div>
-        
-        <div  class="col-md-6">
-            <div id="channel-values-title"></div>
-            <div class="channel-values"></div>
-        </div>
-        </div>
-        <div class="container-fluid" > 
-            <div id="container"></div>
-        </div>        
+
+            </div>
+        </div> 
 	</body>
 </html>

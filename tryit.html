@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Chart</title>
+		<title>Engine</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,10 +20,10 @@
         <link rel="stylesheet" href="assets/css/index.css">
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
-        <!-- JQuery, Bootstrap, tagsinput, HighCharts  -->  
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- JQuery, Bootstrap, tagsinput, HighCharts  -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
         <script src="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
         <script src="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput-angular.min.js"></script>
@@ -31,35 +31,32 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/generic.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/html.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/javascript.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-3d.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+        
         <!-- Engine -->
         <script src="assets/js/engine/exception.js"></script>
         <script src="assets/js/engine/matrix.js"></script>
         <script src="assets/js/engine/engine.js"></script>
+        <!-- <script src="assets/js/engine/test.js"></script>  -->
         <script src="assets/js/index.js"></script>
-        <script src="assets/js/chart.js"></script>
         <script src="assets/js/indexEngineMediator.js"></script>
-        <script src="assets/js/engine/test.js"></script> 
+        <script src="assets/js/chart.js"></script>
 
 	</head>
 	<body>
-
-        <div class="container-fluid" > 
+        <div class="container-fluid" >        
             <div>
                 <nav class="navbar sidebar">
                     <a href="index.html">Home</a>
                     <a href="example.html">Example</a>
                     <a href="tryit.html">Try it</a>
-                    <a href="about.html">About</a>                    
+                    <a href="about.html">About</a>
                 </nav>
             </div>
             <br>
 
-            <div id="container"></div>
-        </div>        
+        </div> 
 	</body>
 </html>
