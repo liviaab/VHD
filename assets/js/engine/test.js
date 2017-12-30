@@ -30,7 +30,11 @@ console.log(matrix.firstMultipleOfColumn(3));
 //------------------------------------------------------------------------------------
 
 console.log('Teste 1');
-var channel = new Matrix( 3, 4, [1/2, 1/2, 0, 0, 0, 1/4, 1/2, 1/4, 1/2, 1/3, 1/6, 0]);
+var channel = new Matrix( 3, 4, [
+	1/2, 1/2, 0, 0,
+	0, 1/4, 1/2, 1/4,
+	1/2, 1/3, 1/6, 0
+	 ]);
 var prior = [1/4,1/2,1/4];
 
 var joint = getJointDistribution(prior, channel);

@@ -34,27 +34,27 @@ var getHyper = function(){
 }
 
 var setPrior = function(array){
-	return _priorDistribution;
+	_priorDistribution = array;
 }
 
 var setChannel = function(matrix){
-	return _channelMatrix;
+	_channelMatrix = matrix;
 }
 
 var setJoint = function(matrix){
-	return _jointDistribution;
+	_jointDistribution = matrix;
 }
 
 var setMarginal = function(array){
-	return _marginalDistribution;
+	_marginalDistribution = matrix;
 }
 
 var setPosterior = function(matrix){
-	return _posteriorDistribution;
+	_posteriorDistribution = matrix;
 }
 
 var setHyper = function(matrix){
-	return _hyperDistribution;
+	_hyperDistribution = matrix;
 }
 
 /*
@@ -218,6 +218,26 @@ var sumArray = function(array){
 	return result;
 }
 
-var printMatrix = function(matrix){
+var consoleMatrix = function(matrix){
 	console.table(matrix.data);
+}
+
+var HtmlMatrix = function(matrix){
+
+	var htmlTable = $("<table></table>");
+	var tbody = $("<tbody></tbody>")
+	var row = $("<tr></tr>");
+	var cell = $("<td></td>");
+
+	for(var i = 0 ; i < matrix.rows ; i++){
+		var newRow = row.clone();
+
+		for (var j = 0 ; j < matrix.columns ; j++){
+			newRow.append(cell.clone().text(matrix.data[i][j]))
+		}
+		tbody.append(newRow);
+	}
+
+	console.log(tbody);
+	return htmlTable.append(tbody);
 }

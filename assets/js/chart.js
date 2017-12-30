@@ -94,6 +94,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	        },
 
 	        series: [
+	        	// 1st serie - triangle
 		        {
 		            lineWidth: 1,
 		            name: 'Limits',
@@ -101,12 +102,12 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 		                enabled: false,
 		                symbol: 'circle'
 		            },
-		            data: [[1,0,0],
-				    	 [0,1,0],
-				    	 [0,0,1],
-				    	 [1,0,0]] 
+		            data: [[1,0,0], [0,1,0], [0,0,1], [1,0,0]] 
 		    	},		    	
+		    	// 2nd serie - output (black) points
 		    	outputPoints,
+
+		    	// 3rd serie - prior (green) point
 		    	priorPoints
 	    	]	    	
 	    });	
@@ -146,13 +147,13 @@ var setDraggableChart = function(chart){
     });
 }
 
-var setDefault = function(outputPoints, priorPoints){
+var drawDefault = function(outputPoints, priorPoints){
 	$('#chart-container').html("");
 	var chart = drawChart(60, 60, outputPoints, priorPoints);
 	setDraggableChart(chart);	
 }
 
-var set2D = function(outputPoints, priorPoints){
+var draw2D = function(outputPoints, priorPoints){
 	$('#chart-container').html("");
 	var chart = drawChart(0, 0, outputPoints, priorPoints);
 	setDraggableChart(chart);	

@@ -1,5 +1,3 @@
-
-
 /*
 	Validations
 */
@@ -16,7 +14,7 @@ var check3DVisualization = function(array){
 	Methods
 */
 
-//retorna um inteiro para ser o raio. Mapeia de 0 a 10 
+//retorna um inteiro para ser o raio do ponto da saida do canal a ser representado no grafico 3d. Mapeia de 0 a 10 
 var mapRadius = function(radius){
 	var r = radius * 10;
 	if(r == 0 && radius > 0){
@@ -74,8 +72,9 @@ var priorTo3DData = function(array, radius, serieName){
 	return retData;
 }
 
-var setChartParameters = function(priorDistribution, marginalDistribution, hyperDistribution ){
+var drawDefaultChart = function(priorDistribution, marginalDistribution, hyperDistribution ){
 
-	setDefault(matrixTo3DData(hyperDistribution, marginalDistribution, "Output"), 
-		priorTo3DData(priorDistribution, getPriorRadius(marginalDistribution), "Prior") );
+	var outputSerie = matrixTo3DData(hyperDistribution, marginalDistribution, "Output");
+	var priorSerie =priorTo3DData(priorDistribution, getPriorRadius(marginalDistribution), "Prior");
+	drawDefault( outputSerie, priorSerie);
 }
