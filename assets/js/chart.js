@@ -20,7 +20,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	// Set up the chart
 		var chart = new Highcharts.Chart({
 	        chart: {
-	            renderTo: 'container',
+	            renderTo: 'chart-container',
 	            margin: 10,
 	            type: 'scatter3d',
 	            options3d: {
@@ -147,13 +147,13 @@ var setDraggableChart = function(chart){
 }
 
 var setDefault = function(outputPoints, priorPoints){
-	$('#container').html("");
+	$('#chart-container').html("");
 	var chart = drawChart(60, 60, outputPoints, priorPoints);
 	setDraggableChart(chart);	
 }
 
 var set2D = function(outputPoints, priorPoints){
-	$('#container').html("");
+	$('#chart-container').html("");
 	var chart = drawChart(0, 0, outputPoints, priorPoints);
 	setDraggableChart(chart);	
 }

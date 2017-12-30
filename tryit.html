@@ -57,6 +57,28 @@
             </div>
             <br>
 
+            <div class="row">                
+                <div class="col-md-6">
+                    <div>Prior Distribution
+                    <span class="glyphicon glyphicon-info-sign" id="info-prior" data-toggle="tooltip" data-placement="top" 
+                        title="Please use fractions or decimal format: '0.*' Delimiters: space, enter and comma."></span>
+                    </div>
+
+                    <input type="text"  id="prior-values"/>
+                    
+                    <div> <button type="button" id="btn-set-values" class="btn btn-default">Set Matrix Values</button></div>    
+                </div>
+                
+                <div  class="col-md-6">
+                    <div id="channel-values-title"></div>
+                    <div class="channel-values"></div>
+                </div>
+            </div> 
+            <br>
+            <div class="row">                
+                <div class=" col-md-6" id="chart-container"></div>
+                <div class=" col-md-6" id="results"></div>
+            </div>
         </div> 
 	</body>
 </html>
