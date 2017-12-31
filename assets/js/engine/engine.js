@@ -218,26 +218,3 @@ var sumArray = function(array){
 	return result;
 }
 
-var consoleMatrix = function(matrix){
-	console.table(matrix.data);
-}
-
-var HtmlMatrix = function(matrix){
-
-	var htmlTable = $("<table></table>");
-	var tbody = $("<tbody></tbody>")
-	var row = $("<tr></tr>");
-	var cell = $("<td></td>");
-
-	for(var i = 0 ; i < matrix.rows ; i++){
-		var newRow = row.clone();
-
-		for (var j = 0 ; j < matrix.columns ; j++){
-			newRow.append(cell.clone().text(matrix.data[i][j]))
-		}
-		tbody.append(newRow);
-	}
-
-	console.log(tbody);
-	return htmlTable.append(tbody);
-}

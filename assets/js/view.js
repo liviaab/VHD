@@ -79,15 +79,15 @@ $(document).ready(function(){
 */
 
 var showCalculations = function(){
-    $("#results").html('<div><p>Number of inputs: ' + numEntries + '<br>Number of Outputs: ' + numOutputs + '</p></div>');
+    $("#results").html('<div><p>Number of inputs: ' + numEntries + '<br><br>Number of Outputs: ' + numOutputs + '</p></div>');
 
     // $("#results").append('<div><p>Joint Distribution:' + getJoint().data + '</p></div>');
 
     // $("#results").append('<div><p>Posterior Distribution:' + getPosterior().data+ '</p></div>');
 
-    $("#results").append('<div><p>Hyper Distribution:' + HtmlMatrix(getHyper()) + '</p></div>');
+    $("#results").append('<div><p>Hyper Distribution: ' + HtmlMatrix(getHyper()) + '</p></div>');
 
-    $("#results").append('<div><p>Marginal Distribution:' + getMarginal()+ '</p></div>');
+    $("#results").append('<div><p>Marginal Distribution: ' + HtmlArray(getMarginal()) + '</p></div>');
     
 }
 

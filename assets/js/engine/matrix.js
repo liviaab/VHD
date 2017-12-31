@@ -215,3 +215,62 @@ Matrix.prototype.firstMultipleOfColumn= function(columnIndex){
 	} 
 	return -1;
 }
+
+var consoleMatrix = function(matrix){
+	console.table(matrix.data);
+}
+
+var HtmlMatrix = function(matrix){
+
+	var htmlTable = $("<table></table>");
+	// var thead = $("<thead></thead>");
+	// var th = $("<th></th>")
+	var tbody = $("<tbody></tbody>")
+	var row = $("<tr></tr>");
+	var cell = $("<td></td>");
+
+	// for(var k = 0; k < matrix.columns ; k++){		
+	// 	thead.append(th.clone().text("Output " + (k+1)) );
+	// }	
+
+	// htmlTable.append(thead);
+
+	
+	for(var i = 0 ; i < matrix.rows ; i++){
+		var newRow = row.clone();
+		for (var j = 0 ; j < matrix.columns ; j++){
+			newRow.append(cell.clone().text(matrix.data[i][j]));
+		}
+		tbody.append(newRow);
+	}
+
+	htmlTable.append(tbody);
+	console.log(htmlTable.prop('outerHTML'));
+	return htmlTable.prop('outerHTML');
+}
+
+var HtmlArray = function(array){
+
+	var htmlTable = $("<table></table>");
+	// var thead = $("<thead></thead>");
+	// var th = $("<th></th>")
+	var tbody = $("<tbody></tbody>")
+	var row = $("<tr></tr>");
+	var cell = $("<td></td>");
+
+	// for(var k = 0; k < matrix.columns ; k++){		
+	// 	thead.append(th.clone().text("Output " + (k+1)) );
+	// }	
+
+	// htmlTable.append(thead);
+
+	var newRow = row.clone();			
+	for(var i = 0 ; i < array.length ; i++){
+		newRow.append(cell.clone().text(array[i]));
+	}
+	tbody.append(newRow);
+
+	htmlTable.append(tbody);
+	console.log(htmlTable.prop('outerHTML'));
+	return htmlTable.prop('outerHTML');
+}
