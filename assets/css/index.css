@@ -7,13 +7,7 @@ body{
 	font-family: 'Quicksand', sans-serif;
 }
 
-#container{
-	/*min-width: 400px; */
-	width: 600px; 
-	min-height: 400px; 
-	height: 600px; 
-	margin: 0 auto;
-}
+
 
 .sidebar{
     height: 100%; /* Full-height: remove this if you want "auto" height */
@@ -75,4 +69,8 @@ body{
 
 h1{
 	font-size: 48px;
+}
+
+div{
+    padding: 5px;
 }

@@ -97,10 +97,11 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	        	// 1st serie - triangle
 		        {
 		            lineWidth: 1,
+		            lineColor: '#A0A0A0',
 		            name: 'Limits',
 		            marker: {
 		                enabled: false,
-		                symbol: 'circle'
+		                symbol: 'circle',
 		            },
 		            data: [[1,0,0], [0,1,0], [0,0,1], [1,0,0]] 
 		    	},		    	

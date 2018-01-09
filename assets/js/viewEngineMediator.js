@@ -41,7 +41,10 @@ var matrixTo3DData = function(matrix, weights, serieName ){
 		temp.y = matrix.data[1][j];
 		temp.z = matrix.data[2][j];
 		temp.p = weights[j];
-		temp.marker= {radius: mapRadius(weights[j])};
+		temp.marker= {	radius: mapRadius(weights[j]),
+						//fillColor: '#663300' 
+					};
+	 
 
 		retData.push(temp);
 	}
@@ -65,7 +68,10 @@ var priorTo3DData = function(array, radius, serieName){
 	temp.y = array[1];
 	temp.z = array[2];
 	temp.p = 1;
-	temp.marker= {radius: radius, symbol: 'circle'};
+	temp.marker= {	radius: radius, 
+					symbol: 'circle',
+					//fillColor: '#6666FF'
+				};
 	retData.push(temp);
 
 	var retData = {data: retData, name: serieName };

@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="vendors/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/github.css">
         <link rel="stylesheet" href="assets/css/index.css">
-        <link rel="stylesheet" href="assets/css/table.css">
+        <link rel="stylesheet" href="assets/css/tryit.css">
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
         <!-- JQuery, Bootstrap, tagsinput, HighCharts  -->
@@ -37,15 +37,21 @@
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         
         <!-- Engine -->
-        <script src="assets/js/engine/exception.js"></script>
-        <script src="assets/js/engine/matrix.js"></script>
-        <script src="assets/js/engine/engine.js"></script>
-        <!-- <script src="assets/js/engine/test.js"></script>  -->
+        <script src="assets/js/engine/util/exception.js"></script>
+        <script src="assets/js/engine/util/matrix.js"></script>
+        <script src="assets/js/engine/engineModule.js"></script>
+        <script src="assets/js/engine/hyperModule.js"></script>
+        <script src="assets/js/engine/jointModule.js"></script>
+        <script src="assets/js/engine/marginalModule.js"></script>
+        <script src="assets/js/engine/posteriorModule.js"></script>
+        <!-- <script src="assets/js/engine/util/test.js"></script>  -->
         <script src="assets/js/channelMatrix.js"></script>        
-        <script src="assets/js/chart.js"></script>
+        <script src="assets/js/3dchart.js"></script>
+        <script src="assets/js/scatter-axis.js"></script>
         <script src="assets/js/prior.js"></script>
         <script src="assets/js/view.js"></script>
         <script src="assets/js/viewEngineMediator.js"></script>
+        <script src="assets/js/tryit.js"></script>
 
 	</head>
 	<body>
@@ -78,9 +84,26 @@
                 </div>
             </div> 
             <br>
-            <div class="row">                
-                <div class=" col-md-6" id="chart-container"></div>
-                <div class=" col-md-6" id="results"></div>
+            <div class="row chart-row">                
+                <div id="chart-container" class="col-md-10"></div>
+            <!-- </div>
+            <div class="row" id="more"> -->
+                <div id="button-more" class="col-md-2" >
+                    <button class="btn btn-info btn-circle btn-lg" type="button" id="button-detail"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+                <div id="button-less" class="col-md-2" >
+                    <button class="btn btn-info btn-circle btn-lg" type="button" id="button-hide"><span class="glyphicon glyphicon-minus"></span></button>
+                </div>
+            </div>
+            <div class="row" id='scatter-axis-subtitle'>Change Prior Distribution</div>
+            <div class="row scatter-axis">
+                <div id='x-coordinate' class=" col-md-4"></div>
+                <div id='y-coordinate' class=" col-md-4"></div>
+                <div id='z-coordinate' class=" col-md-4"></div>
+            </div>
+            <div class="row calculations">
+                <div class=" col-md-6" id="results-c1"></div>                
+                <div class=" col-md-6" id="results-c2"></div>
             </div>
         </div> 
 	</body>

@@ -57,6 +57,7 @@ $(document).ready(function(){
             var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
             // console.log('hyper:');
             // printMatrix(hyper.matrix)
+            configureChartRow();
             drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
             //drawChart();         
             showCalculations();
@@ -79,15 +80,15 @@ $(document).ready(function(){
 */
 
 var showCalculations = function(){
-    $("#results").html('<div><p>Number of inputs: ' + numEntries + '<br><br>Number of Outputs: ' + numOutputs + '</p></div>');
+    $("#results-c1").html('<div><p>Number of inputs: ' + numEntries + '<br><br>Number of Outputs: ' + numOutputs + '</p></div>');
 
-    // $("#results").append('<div><p>Joint Distribution:' + getJoint().data + '</p></div>');
+    $("#results-c1").append('<div><p>Source Entropy:' + HtmlArray(getPrior()) + '</p></div>');
 
     // $("#results").append('<div><p>Posterior Distribution:' + getPosterior().data+ '</p></div>');
 
-    $("#results").append('<div><p>Hyper Distribution: ' + HtmlMatrix(getHyper()) + '</p></div>');
+    $("#results-c2").append('<div><p>Hyper Distribution: ' + HtmlMatrix(getHyper()) + '</p></div>');
 
-    $("#results").append('<div><p>Marginal Distribution: ' + HtmlArray(getMarginal()) + '</p></div>');
+    $("#results-c2").append('<div><p>Marginal Distribution: ' + HtmlArray(getMarginal()) + '</p></div>');
     
 }
 
