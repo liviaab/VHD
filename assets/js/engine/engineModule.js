@@ -14,11 +14,13 @@ var getChannel = function(){
 }
 
 var setPrior = function(array){
-	_priorDistribution = array;
+	_priorDistribution = array.slice();
 }
 
 var setChannel = function(matrix){
-	_channelMatrix = matrix;
+	for(var i = 0; i < matrix.rows ; i++){
+		_channelMatrix = matrix.data[i].slice();
+	}
 }
 
 

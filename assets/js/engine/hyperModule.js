@@ -10,7 +10,9 @@ var getHyper = function(){
 }
 
 var setHyper = function(matrix){
-	_hyperDistribution = matrix;
+	for(var i = 0; i < matrix.rows ; i++){
+		_hyperDistribution = matrix.data[i].slice();
+	}	 
 }
 
 
@@ -48,7 +50,8 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 		}
 	}
 
-	_hyperDistribution = posteriorDistributionMatrix;
+	setHyper(posteriorDistributionMatrix);
+
 	return {
 		matrix: posteriorDistributionMatrix, 
 		distribution: finalMarginalDistribution 

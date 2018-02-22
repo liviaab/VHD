@@ -10,7 +10,9 @@ var getJoint = function(){
 }
 
 var setJoint = function(matrix){
-	_jointDistribution = matrix;
+	for(var i = 0; i < matrix.rows ; i++){
+		_jointDistribution = matrix.data[i].slice();
+	}
 }
 
 
@@ -30,8 +32,15 @@ var getJointDistribution = function(priorProbability, channelMatrix){
 		jointMatrix.addColumn(row);
 	}
 
+	/*
 	_priorDistribution = priorProbability;
 	_channelMatrix = channelMatrix;
 	_jointDistribution = jointMatrix;
+	*/
+	
+	setPrior(priorProbability);
+	setChannel(channelMatrix);
+	setJoint(jointMatrix);
+
 	return jointMatrix;
 }

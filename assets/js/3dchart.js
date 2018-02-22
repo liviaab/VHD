@@ -57,7 +57,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 
 	        yAxis: {
 	            min: 0,
-	            max: 2,
+	            max: 1.5,
 		        tickInterval: 0.5,
 		        labels: {
 		            skew3d: true
@@ -68,7 +68,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	        },
 	        xAxis: {
 	            min: 0,
-	            max: 2,
+	            max: 1.5,
 		        tickInterval: 0.5,
 		        labels: {
 		            skew3d: true
@@ -80,7 +80,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	        },
 	        zAxis: {
 	            min: 0,
-	            max: 2,
+	            max: 1.5,
 		        tickInterval: 0.5,
 		        labels: {
 		            skew3d: true

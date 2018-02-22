@@ -90,6 +90,7 @@ var showCalculations = function(){
 
     $("#results-c2").append('<div><p>Marginal Distribution: ' + HtmlArray(getMarginal()) + '</p></div>');
     
+    
 }
 
   

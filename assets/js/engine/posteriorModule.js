@@ -9,7 +9,9 @@ var getPosterior = function(){
 }
 
 var setPosterior = function(matrix){
-	_posteriorDistribution = matrix;
+	for(var i = 0; i < matrix.rows ; i++){
+		_posteriorDistribution = matrix.data[i].slice();
+	}
 }
 
 
@@ -36,7 +38,8 @@ var getPosteriorDistribution = function(jointMatrix, initialMarginalDistribution
 			jointMatrix.data[i][j] = jointMatrix.data[i][j]/initialMarginalDistribution[j]; 	
 		}	
 	}
-	_posteriorDistribution = jointMatrix;
+	//_posteriorDistribution = jointMatrix;
+	setPosterior(jointMatrix);
 
 	return {
 		matrix: jointMatrix,

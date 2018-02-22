@@ -9,8 +9,8 @@ var getMarginal = function(){
 	return _marginalDistribution;
 }
 
-var setMarginal = function(array){
-	_marginalDistribution = matrix;
+var setMarginal = function(array){	
+	_marginalDistribution = array.slice();		 
 }
 
 
@@ -29,7 +29,8 @@ var getMarginalDistributionColumns = function(jointMatrix){
 		}	
 		marginalDistribution.push(sum);
 	}
-	_marginalDistribution = marginalDistribution;
+	//_marginalDistribution = marginalDistribution;
+	setMarginal(marginalDistribution);
 	return marginalDistribution;
 }
 
@@ -44,6 +45,8 @@ var getMarginalDistributionRows = function(jointMatrix){
 		}	
 		marginalDistribution.push(sum);
 	}
-	_marginalDistribution = marginalDistribution;
+	//_marginalDistribution = marginalDistribution;
+	setMarginal(marginalDistribution);
+
 	return marginalDistribution;
 }
