@@ -59,3 +59,15 @@ var getNumericValues = function(array){
     }
     return ret;
 }
+
+Array.prototype.first = function () {
+    return this[0];
+};
+
+Array.prototype.second = function () {
+    return this[1];
+};
+
+Array.prototype.third = function () {
+    return this[2];
+};

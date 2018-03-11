@@ -1,14 +1,8 @@
 var drawScatterAxis = function(containerId, coordinate, title){
     Highcharts.chart(containerId, {
-        chart: {
-            //zoomType: 'xy',
+        chart: {           
             height: '300px'
         },
-
-        // boost: {
-        //     useGPUTranslations: true,
-        //     usePreAllocated: true
-        // },
 
         xAxis: {
             min: 0,
@@ -18,8 +12,8 @@ var drawScatterAxis = function(containerId, coordinate, title){
 
         yAxis: {
             // Renders faster when we don't have to compute min and max
-            min: -0.01,
-            max: 0.01,
+            min: -1,
+            max: 1,
             minPadding: 0,
             maxPadding: 0,
             title: {
@@ -35,18 +29,74 @@ var drawScatterAxis = function(containerId, coordinate, title){
             enabled: false
         },
 
-        series: [{
-            //type: 'scatter',
-            //color: 'rgba(152,0,67,0.1)',
-            data: [[0.5,0]],
-            marker: {
-                radius: 3,
-                fillcolor: '#000000'
+        series: [
+            {
+                plotOptions: {
+                    line: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+
+                lineWidth: 1,
+                lineColor: '#A0A0A0',                                
+                data: [[-1,0], [2,0]],
+                marker: {
+                    enabled: false                
+                },
+                draggableX: false,
+                draggableY: false
             },
-            tooltip: {
-                followPointer: false,
-                pointFormat: '[{point.x:.1f}, {point.y:.1f}]'
+
+            {            
+                point: {
+                    events: {
+                        /*drag: function (e) {                            
+                            $('#drag-x').html(
+                                'Dragging <b>' + this.series.name + '</b>, <b>' + this.category + '</b> to <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
+                        },*/
+                        drop: function () {
+                            alert('You just dropped the point');
+                            var value = this.series.data[0].x;
+                            if(containerId == 'x-coordinate'){
+                                setPriorValues( value, getPriorValues().second(), getPriorValues().third() );
+                            }
+                            else if(containerId == 'y-coordinate'){
+                                setPriorValues( getPriorValues().first(), value, getPriorValues().third() );
+                            }
+                            else if(containerId == 'z-coordinate'){
+                                setPriorValues( getPriorValues().first(), getPriorValues().second(), value);
+                            }
+                            
+                            console.log(value);                            
+                        }
+                    }
+                },
+                
+                stickyTracking: true,
+
+                data: [[coordinate,0]],
+                marker: {
+                    radius: 5,
+                    fillcolor: '#000000'
+                },
+                tooltip: {
+                    followPointer: false,
+                    pointFormat: '[{point.x:.1f}, {point.y:.1f}]'
+                },
+                draggableX: true,
+                draggableY: false,
+                dragMaxX: 1,
+                dragMinX: 0,
+                cursor: 'pointer'
+                
+               
             }
-        }]
+        ]
     });
 }
+
+
+            
+        

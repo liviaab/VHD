@@ -28,6 +28,14 @@ var getNumOutputs = function(){
 }
 
 /*
+    Setters
+*/
+
+var setPriorValues = function(array){
+    priorValues = array
+}
+
+/*
     Events
 */
 
@@ -40,7 +48,7 @@ $(document).ready(function(){
         } 
     });
 
-        $(".channel-values").on("click","#btn-Visualize", function(){
+    $(".channel-values").on("click","#btn-Visualize", function(){
         getChannelMatrixValues();
         if(checkElementsChannelMatrix()){
             var joint = getJointDistribution(getPriorValues(), getChannelMatrix());
@@ -89,8 +97,7 @@ var showCalculations = function(){
     $("#results-c2").append('<div><p>Hyper Distribution: ' + HtmlMatrix(getHyper()) + '</p></div>');
 
     $("#results-c2").append('<div><p>Marginal Distribution: ' + HtmlArray(getMarginal()) + '</p></div>');
-    
-    
+        
 }
 
   
