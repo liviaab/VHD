@@ -1,118 +1,109 @@
+/*
+
+	Globals
+
+*/
+
+var _chart ;
 
 var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
-	// Give the points a 3D feel by adding a radial gradient
-	Highcharts.setOptions({
-	    colors: $.map(Highcharts.getOptions().colors, function (color) {
-	        return {
-	            radialGradient: {
-	                cx: 0.4,
-	                cy: 0.3,
-	                r: 0.5
+	
+	var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chart-container',
+            margin: 10,
+            type: 'scatter3d',
+            options3d: {
+                enabled: true,
+                alpha: alphaAngle,
+                beta: betaAngle,
+                depth: 600,
+                viewDistance: 10 ,
+            }
+        },
+        title: {
+            text: 'Hyper Distribution'
+        },/*
+        subtitle: {
+            text: 'subtitle'
+        },*/
+        plotOptions: {
+            scatter: {
+                dataLabels: {
+                    format: "{point.name}",
+                    enabled: true
+                },
+            }
+        },
+        tooltip:{
+        	formatter: function(){
+        		return  '<b>'+ this.series.name +' - '+ this.point.name + '</b><br/>' +
+        				'x: ' + this.point.x + '<br/>' +
+        				'y: ' + this.point.y + '<br/>'+
+        				'z: ' + this.point.z + '<br/>'+
+        				'p: ' + this.point.p
+        	}
+        },
+
+        yAxis: {
+            min: 0,
+            max: 1.5,
+	        tickInterval: 0.5,
+	        labels: {
+	            skew3d: true
+	        },
+	        title:{
+	        	text: 'x2'
+	        }
+        },
+        xAxis: {
+            min: 0,
+            max: 1.5,
+	        tickInterval: 0.5,
+	        labels: {
+	            skew3d: true
+	        },
+	        title:{ 
+	        	text: 'x1'
+	        },
+            gridLineWidth: 1 
+        },
+        zAxis: {
+            min: 0,
+            max: 1.5,
+	        tickInterval: 0.5,
+	        labels: {
+	            skew3d: true
+	        },
+	        title:{
+	        	text:'x3'
+	        },
+        },
+        legend: {
+            enabled: false
+        },
+
+        series: [
+        	// 1st serie - triangle
+	        {
+	            lineWidth: 1,
+	            lineColor: '#A0A0A0',
+	            name: 'Limits',
+	            marker: {
+	                enabled: false,
+	                symbol: 'circle',
 	            },
-	            stops: [
-	                [0, color],
-	                [1, Highcharts.Color(color).brighten(-0.2).get('rgb')]
-	            ]
-	        };
-	    })
-	});
+	            data: [[1,0,0], [0,1,0], [0,0,1], [1,0,0]] 
+	    	},		    	
+	    	// 2nd serie - output (black) points
+	    	outputPoints,
 
-	// Set up the chart
-		var chart = new Highcharts.Chart({
-	        chart: {
-	            renderTo: 'chart-container',
-	            margin: 10,
-	            type: 'scatter3d',
-	            options3d: {
-	                enabled: true,
-	                alpha: alphaAngle,
-	                beta: betaAngle,
-	                depth: 600,
-	                viewDistance: 10 ,
-	            }
-	        },
-	        title: {
-	            text: 'Hyper Distribution'
-	        },/*
-	        subtitle: {
-	            text: 'subtitle'
-	        },*/
-	        plotOptions: {
-	            scatter: {
-	                dataLabels: {
-	                    format: "{point.name}",
-	                    enabled: true
-	                },
-	            }
-	        },
-	        tooltip:{
-	        	formatter: function(){
-	        		return  '<b>'+ this.series.name +' - '+ this.point.name + '</b><br/>' +
-	        				'x: ' + this.point.x + '<br/>' +
-	        				'y: ' + this.point.y + '<br/>'+
-	        				'z: ' + this.point.z + '<br/>'+
-	        				'p: ' + this.point.p
-	        	}
-	        },
-
-	        yAxis: {
-	            min: 0,
-	            max: 1.5,
-		        tickInterval: 0.5,
-		        labels: {
-		            skew3d: true
-		        },
-		        title:{
-		        	text: 'x2'
-		        }
-	        },
-	        xAxis: {
-	            min: 0,
-	            max: 1.5,
-		        tickInterval: 0.5,
-		        labels: {
-		            skew3d: true
-		        },
-		        title:{ 
-		        	text: 'x1'
-		        },
-	            gridLineWidth: 1 
-	        },
-	        zAxis: {
-	            min: 0,
-	            max: 1.5,
-		        tickInterval: 0.5,
-		        labels: {
-		            skew3d: true
-		        },
-		        title:{
-		        	text:'x3'
-		        },
-	        },
-	        legend: {
-	            enabled: false
-	        },
-
-	        series: [
-	        	// 1st serie - triangle
-		        {
-		            lineWidth: 1,
-		            lineColor: '#A0A0A0',
-		            name: 'Limits',
-		            marker: {
-		                enabled: false,
-		                symbol: 'circle',
-		            },
-		            data: [[1,0,0], [0,1,0], [0,0,1], [1,0,0]] 
-		    	},		    	
-		    	// 2nd serie - output (black) points
-		    	outputPoints,
-
-		    	// 3rd serie - prior (green) point
-		    	priorPoints
-	    	]	    	
-	    });	
-	    return chart;    
+	    	// 3rd serie - prior (green) point
+	    	priorPoints
+    	]	    	
+    });	
+    _chart = chart
+    return chart;    
 }
 
 var setDraggableChart = function(chart){

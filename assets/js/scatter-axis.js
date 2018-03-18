@@ -57,24 +57,23 @@ var drawScatterAxis = function(containerId, coordinate, title){
                                 'Dragging <b>' + this.series.name + '</b>, <b>' + this.category + '</b> to <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                         },*/
                         drop: function () {
-                            alert('You just dropped the point');
                             var value = this.series.data[0].x;
                             if(containerId == 'x-coordinate'){
-                                setPriorValues( value, getPriorValues().second(), getPriorValues().third() );
+                                setPriorValues( [value, getPriorValues().second(), getPriorValues().third()] );
                             }
                             else if(containerId == 'y-coordinate'){
-                                setPriorValues( getPriorValues().first(), value, getPriorValues().third() );
+                                setPriorValues( [getPriorValues().first(), value, getPriorValues().third()] );
                             }
                             else if(containerId == 'z-coordinate'){
-                                setPriorValues( getPriorValues().first(), getPriorValues().second(), value);
+                                setPriorValues( [getPriorValues().first(), getPriorValues().second(), value] );
                             }
                             
-                            console.log(value);                            
+                            configureAndDrawChart();
                         }
                     }
                 },
                 
-                stickyTracking: true,
+                stickyTracking: false,
 
                 data: [[coordinate,0]],
                 marker: {
@@ -89,8 +88,7 @@ var drawScatterAxis = function(containerId, coordinate, title){
                 draggableY: false,
                 dragMaxX: 1,
                 dragMinX: 0,
-                cursor: 'pointer'
-                
+                cursor: 'pointer'               
                
             }
         ]

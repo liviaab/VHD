@@ -25,7 +25,8 @@ $(document).ready( function(){
 
 
 var configureChartRow = function(){
+	$('#chart-container').html("");
 	$('#chart-container').show();
-	$('#button-more').show();
+	$('#button-more').toggle();
 }
 

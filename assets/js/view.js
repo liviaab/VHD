@@ -51,24 +51,7 @@ $(document).ready(function(){
     $(".channel-values").on("click","#btn-Visualize", function(){
         getChannelMatrixValues();
         if(checkElementsChannelMatrix()){
-            var joint = getJointDistribution(getPriorValues(), getChannelMatrix());
-            // console.log("joint:"); 
-            // printMatrix(joint);
-
-            var marginalY = getMarginalDistributionColumns(joint);
-            // console.log('marginal:', marginalY)
-
-            var posterior = getPosteriorDistribution(joint, marginalY)
-            // console.log('posterior:')
-            // printMatrix(posterior.matrix);
-
-            var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
-            // console.log('hyper:');
-            // printMatrix(hyper.matrix)
-            configureChartRow();
-            drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
-            //drawChart();         
-            showCalculations();
+            configureAndDrawChart();
         }   
     });
 
@@ -86,6 +69,23 @@ $(document).ready(function(){
 /* 
     Methods
 */
+
+var configureAndDrawChart = function(){
+    var joint = getJointDistribution(getPriorValues(), getChannelMatrix());
+    
+    var marginalY = getMarginalDistributionColumns(joint);
+    
+    var posterior = getPosteriorDistribution(joint, marginalY)
+    
+    var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
+
+    configureChartRow();
+    
+    drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
+    
+    showCalculations();
+}
+
 
 var showCalculations = function(){
     $("#results-c1").html('<div><p>Number of inputs: ' + numEntries + '<br><br>Number of Outputs: ' + numOutputs + '</p></div>');

@@ -223,18 +223,9 @@ var consoleMatrix = function(matrix){
 var HtmlMatrix = function(matrix){
 
 	var htmlTable = $("<table></table>");
-	// var thead = $("<thead></thead>");
-	// var th = $("<th></th>")
 	var tbody = $("<tbody></tbody>")
 	var row = $("<tr></tr>");
 	var cell = $("<td></td>");
-
-	// for(var k = 0; k < matrix.columns ; k++){		
-	// 	thead.append(th.clone().text("Output " + (k+1)) );
-	// }	
-
-	// htmlTable.append(thead);
-
 	
 	for(var i = 0 ; i < matrix.rows ; i++){
 		var newRow = row.clone();
@@ -245,24 +236,16 @@ var HtmlMatrix = function(matrix){
 	}
 
 	htmlTable.append(tbody);
-	console.log(htmlTable.prop('outerHTML'));
+	//console.log(htmlTable.prop('outerHTML'));
 	return htmlTable.prop('outerHTML');
 }
 
 var HtmlArray = function(array){
 
 	var htmlTable = $("<table></table>");
-	// var thead = $("<thead></thead>");
-	// var th = $("<th></th>")
 	var tbody = $("<tbody></tbody>")
 	var row = $("<tr></tr>");
 	var cell = $("<td></td>");
-
-	// for(var k = 0; k < matrix.columns ; k++){		
-	// 	thead.append(th.clone().text("Output " + (k+1)) );
-	// }	
-
-	// htmlTable.append(thead);
 
 	var newRow = row.clone();			
 	for(var i = 0 ; i < array.length ; i++){
@@ -271,6 +254,6 @@ var HtmlArray = function(array){
 	tbody.append(newRow);
 
 	htmlTable.append(tbody);
-	console.log(htmlTable.prop('outerHTML'));
+	//console.log(htmlTable.prop('outerHTML'));
 	return htmlTable.prop('outerHTML');
 }
