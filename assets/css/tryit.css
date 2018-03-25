@@ -10,7 +10,7 @@ th, td{
 	padding: 5px;
 }
 
-.btn-circle {
+.btn-square {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -19,8 +19,9 @@ th, td{
   line-height: 1.428571429;
   border-radius: 15px;
   bottom: 0;
+  background-color: #111;
 }
-.btn-circle.btn-lg {
+.btn-square.btn-lg {
   width: 50px;
   height: 50px;
   padding: 10px 16px;
