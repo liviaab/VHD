@@ -51,8 +51,9 @@ $(document).ready(function(){
     $(".channel-values").on("click","#btn-Visualize", function(){
         getChannelMatrixValues();
         if(checkElementsChannelMatrix()){
-            $("#button-more").toggle();
+            // $("#button-more").toggle();
             configureAndDrawChart();
+
         }   
     });
 
@@ -83,6 +84,8 @@ var configureAndDrawChart = function(){
     configureChartRow();
     
     drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
+    
+    drawBarycentricChart({},{});
     
     showCalculations();
 }

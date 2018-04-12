@@ -47,8 +47,8 @@
         <script src="assets/js/engine/posteriorModule.js"></script>
         <!-- <script src="assets/js/engine/util/test.js"></script>  -->
         <script src="assets/js/channelMatrix.js"></script>        
-        <script src="assets/js/3dchart.js"></script>
-        <script src="assets/js/scatter-axis.js"></script>
+        <script src="assets/js/charts/3dchart.js"></script>
+        <script src="assets/js/charts/barycentric-chart.js"></script>
         <script src="assets/js/prior.js"></script>
         <script src="assets/js/view.js"></script>
         <script src="assets/js/viewEngineMediator.js"></script>
@@ -86,9 +86,10 @@
             </div> 
             <br>
             <div class="row chart-row">                
-                <div id="chart-container" class="col-md-10"></div>
+                <div id="chart-container" class="col-md-6"></div>
+                <div id="barycentric-container" class="col-md-6"></div>
             </div>
-            <div class="row" id="more"> 
+           <!--  <div class="row" id="more"> 
                 <div id="button-more" class="col-md-2" >
                     <button class="btn btn-default" type="button" id="button-detail"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
@@ -101,7 +102,7 @@
                 <div id='x-coordinate' class=" col-md-4"></div>
                 <div id='y-coordinate' class=" col-md-4"></div>
                 <div id='z-coordinate' class=" col-md-4"></div>
-            </div>
+            </div> -->
             <div class="row calculations">
                 <div class=" col-md-6" id="results-c1"></div>                
                 <div class=" col-md-6" id="results-c2"></div>
