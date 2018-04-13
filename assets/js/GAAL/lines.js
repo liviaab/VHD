@@ -6,11 +6,6 @@
 		  	y =  sqrt(3)/3 * (-x + 1)
 */
 
-// var line1 = function(x, y){
-// 	// x = 1/2
-// 	return y;
-// }
-
 var line2 = function(x){
 	return  Math.sqrt(3)/3 * x
 } 
@@ -26,3 +21,71 @@ var line3 = function(x){
 //var _acp1 = y
 var _acp2 = -Math.sqrt(3)
 var _acp3 =  Math.sqrt(3)
+
+
+var pointProjectionLine1 = function(x, y){
+	return new Point(1/2, y);
+}
+
+var pointProjectionLine2 = function(x, y){
+	var b = y - (_acp2* x );
+	
+	//perpendicularToLine2 = _acp2 * x2 + b;
+
+	//a projeção de (x,y) em line2 é onde as duas retas (line2 e perpendicularToLine2) se encontram 
+	// Math.sqrt(3)/3 * x2 = -Math.sqrt(3) * x2 + b;
+	// x = sqrt(3)/4 * b
+
+	var x2 = sqrt(3)/4 * b;
+	var y2 = line2(x2);
+
+	return new Point(x2, y2);
+}  
+
+var pointProjectionLine3 = function(x, y){
+	var b = y - (_acp3 * x);
+	
+	//perpendicularToLine3 = _acp3 * x2 + b;
+
+	//a projeção de (x,y) em line3:
+	// - Math.sqrt(3)/3 * ( - x2 + 1 ) = Math.sqrt(3) * x2 + b;
+	// x = ( sqrt(3) - 3 * b) / ( 3 * sqrt(3) + 1)
+
+	var x2 = ( Math.sqrt(3) - 3 * b) / ( 3 * Math.sqrt(3) + 1)
+	var y2 = line3(x2);
+
+	return new  Point(x2, y2);
+} 
+
+	//	A altura do triângulo equilátero de lado = 1 é a distância total de um vértice ao ponto da altura
+
+
+/*
+	Pontos de altura:
+*/
+
+var _PointXHeight = new Point(1/4, Math.sqrt(3)/4);
+var _PointYHeight = new Point(3/4, Math.sqrt(3)/4);
+var _PointZHeight = new Point(1/2, 0);
+
+var proportionToX( projectedPoint ){
+
+	var distance = projectedPoint.Distance(_PointXHeight);
+
+	return distance / ( Math.sqrt(3)/2 );
+}
+
+var proportionToY( projectedPoint ){
+
+	var distance = projectedPoint.Distance(_PointYHeight);
+
+	return distance / ( Math.sqrt(3)/2 );
+}
+
+var proportionToZ( projectedPoint ){
+
+	var distance = projectedPoint.Distance(_PointZHeight);
+
+	return distance / ( Math.sqrt(3)/2 );
+}
+
