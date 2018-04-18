@@ -1,3 +1,14 @@
+//	A altura do triângulo equilátero de lado = 1 é a distância total de um vértice ao ponto da altura, que é sqrt(3)/2
+
+/*
+	Pontos de altura:
+*/
+
+var _PointXHeight = new Point(1/4, Math.sqrt(3)/4);
+var _PointYHeight = new Point(3/4, Math.sqrt(3)/4);
+var _PointZHeight = new Point(1/2, 0);
+var _TriangleHeight = Math.sqrt(3)/2 ;
+
 /*
 	barycentric lines
 	Line1: 	x = 1/2
@@ -22,6 +33,9 @@ var line3 = function(x){
 var _acp2 = -Math.sqrt(3)
 var _acp3 =  Math.sqrt(3)
 
+/*
+	Projeção de um ponto 2D qualquer nas retas baricêntricas
+*/
 
 var pointProjectionLine1 = function(x, y){
 	return new Point(1/2, y);
@@ -57,35 +71,28 @@ var pointProjectionLine3 = function(x, y){
 	return new  Point(x2, y2);
 } 
 
-	//	A altura do triângulo equilátero de lado = 1 é a distância total de um vértice ao ponto da altura
-
-
 /*
-	Pontos de altura:
+	Proporção entre um ponto na reta e a altura do triangulo
 */
-
-var _PointXHeight = new Point(1/4, Math.sqrt(3)/4);
-var _PointYHeight = new Point(3/4, Math.sqrt(3)/4);
-var _PointZHeight = new Point(1/2, 0);
-
-var proportionToX( projectedPoint ){
+var proportionToX = function( projectedPoint ){
 
 	var distance = projectedPoint.Distance(_PointXHeight);
 
-	return distance / ( Math.sqrt(3)/2 );
+	return distance / ( _TriangleHeight );
 }
 
-var proportionToY( projectedPoint ){
+var proportionToY = function( projectedPoint ){
 
 	var distance = projectedPoint.Distance(_PointYHeight);
 
-	return distance / ( Math.sqrt(3)/2 );
+	return distance / ( _TriangleHeight );
 }
 
-var proportionToZ( projectedPoint ){
+var proportionToZ = function( projectedPoint ){
 
 	var distance = projectedPoint.Distance(_PointZHeight);
 
-	return distance / ( Math.sqrt(3)/2 );
+	return distance / ( _TriangleHeight);
 }
+
 

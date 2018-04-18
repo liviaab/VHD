@@ -7,3 +7,4 @@ function Point(x, y){
 Point.prototype.Distance = function( point ){
 	return Math.srqt( (point.x - this.x) + (point.y - this.y) );
 };
+
