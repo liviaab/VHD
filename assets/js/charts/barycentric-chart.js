@@ -62,7 +62,11 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
             {
 
                 data: [[1/2,1/3]]
-            }
+            },
+
+            priorPoints
+
+
             ],
 
         // responsive: {

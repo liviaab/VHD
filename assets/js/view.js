@@ -85,9 +85,13 @@ var configureAndDrawChart = function(){
     
     drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
     
-    drawBarycentricChart({},{});
+    var prior2D = transform3Dto2Dpoint(getPriorValues()[0], getPriorValues()[1], getPriorValues()[2]);
+
+    drawBarycentricChart({},{data: [[prior2D.x, prior2D.y]] });
     
     showCalculations();
+
+    
 }
 
 

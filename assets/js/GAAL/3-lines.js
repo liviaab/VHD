@@ -95,4 +95,3 @@ var proportionToZ = function( projectedPoint ){
 	return distance / ( _TriangleHeight);
 }
 
-

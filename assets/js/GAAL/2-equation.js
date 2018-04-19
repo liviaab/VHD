@@ -4,15 +4,15 @@ function FristDegreeEquation(angularCoefficient, b){
 }
 
 
-Point.prototype.Result = function( x ){
+FristDegreeEquation.prototype.Result = function( x ){
 	return this.a * x + this.b;
 };
 
 
-Point.prototype.LinesIntersection = function( acoef2, b2){
-	//this.a * x + this.b = acoe2f * x + b2
+FristDegreeEquation.prototype.LinesIntersection = function( equation ){
+	//this.a * x + this.b = a2 * x + b2
 
-	var x = (b2 - this.b) / ( this.a - acoef2)
+	var x = (equation.b - this.b) / ( this.a - equation.a)
 	var y = this.Result(x);
 
 	return new Point(x, y);
@@ -34,4 +34,12 @@ var solveQuadratic = function(a, b, c){
 
 var get2ndBinomialCoefficients = function(a, b){
 	return new Array( a * a, 2 * a * b, b * b );
+}
+
+
+var getPerpendicularBCoefficient = function(mCoeff, point){
+	// y = mCoeff * x + b
+	// y - 
+	var b = point.y - mCoeff * point.x
+	return new FristDegreeEquation(mCoeff, b);
 }

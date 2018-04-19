@@ -1,9 +1,3 @@
-/*
-var _PointXHeight = new Point(1/4, Math.sqrt(3)/4);
-var _PointYHeight = new Point(3/4, Math.sqrt(3)/4);
-var _PointZHeight = new Point(1/2, 0);
-var _TriangleHeight = Math.sqrt(3)/2 ;
-*/
 
 
 /*		
@@ -34,7 +28,7 @@ var transform3Dto2Dpoint = function(x, y, z){
 	var c = binomial1[2] + binomial2[2] - Math.pow(distanceXtoXHeight, 2);
 
 	var roots = solveQuadratic(a, b, c);
-	var chosenRoot1;
+	var chosenRoot1 = null;
 
 	if(roots.length == 0){
 		throw new "No real roots";
@@ -60,7 +54,58 @@ var transform3Dto2Dpoint = function(x, y, z){
 		throw  new "None of the cases";
 	}
 
+	// reta baricentrica: y = raiz(3)/3 x
+	// distanceXtoYHeight = raiz( ( x - 0)² + (y - 0)² ) 
+	// distanceXtoYHeight = raiz( ( x)² + ( raiz(3)/3 * x )² ) 
 
+	var binomial3 = get2ndBinomialCoefficients(1, 0);
+	var binomial4 = get2ndBinomialCoefficients( Math.sqrt(3)/3, 0 );
+	// coeficientes da equação de segundo grau:
+	var d = binomial3[0] + binomial4[0];
+	var e = binomial3[1] + binomial4[1];
+	var f = binomial3[2] + binomial4[2] - Math.pow(distanceYtoYHeight, 2);
 
-	
+	var roots2 = solveQuadratic(d, e, f);
+	var chosenRoot2 = null;
+
+	if(roots2.length == 0){
+		throw new "No real roots";
+	}
+	else if(roots2[0] >= _PointXHeight.x && roots2[0] <= 1  && roots2[1] >= _PointXHeight.x && roots2[1] <= 1){
+		if( line3( roots2[0]) <= _PointXHeight.y && line3( roots2[0]) > 0){
+			chosenRoot2 = roots2[0];	
+		}
+		else if(line3( roots2[1]) <= _PointXHeight.y && line3( roots2[1]) > 0){
+			chosenRoot2 = roots2[1];
+		}
+		else{
+			throw  new "None of the cases";
+		}
+	}
+	else if( roots2[0] >= _PointXHeight.x && roots2[0] <= 1){
+		chosenRoot2 = roots2[0];	
+	}
+	else if( roots2[1] >= _PointXHeight.x && roots2[1] <= 1){
+		chosenRoot2 = roots2[1];
+	}
+	else{
+		throw  new "None of the cases";
+	}
+
+	/*
+		Achando as retas perpendiculares
+	*/
+
+	if(chosenRoot1 != null && chosenRoot2 != null){
+		var eq1 = getPerpendicularBCoefficient(_acp3, new Point(chosenRoot1, line3(chosenRoot1)) );
+		var eq2 = getPerpendicularBCoefficient(_acp2, new Point(chosenRoot2, line2(chosenRoot2)) );
+
+		var point = eq1.LinesIntersection(eq2);
+		console.log('ESSE EH O PONTO NO GRAFICO');
+		console.log(point);
+
+		return point;
+	}
+
+	return null
 }
