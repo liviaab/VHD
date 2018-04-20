@@ -20,14 +20,15 @@ FristDegreeEquation.prototype.LinesIntersection = function( equation ){
 
 
 var solveQuadratic = function(a, b, c){
-	var delta = b * b - 4 * a* c
+	var delta = b * b - 4 * a * c
 	
 	if(delta < 0 ){
 		throw new "No real roots.";
+		return null; 
 	}
 
-	var x1 = (-b + Math.sqrt(delta) )/ 2 * a;
-	var x2 = (-b - Math.sqrt(delta) )/ 2 * a;
+	var x1 = (-b + Math.sqrt(delta) )/ (2 * a);
+	var x2 = (-b - Math.sqrt(delta) )/ (2 * a);
 
 	return new Array(x1, x2);
 }

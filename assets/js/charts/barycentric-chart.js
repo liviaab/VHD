@@ -53,7 +53,7 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                 enabled: false,
                 symbol: 'circle',
             },
-            data: [ [0,0], [1/2, Math.sqrt(3)/2], [1,0],[0,0]]
+            data: [ [0,0], [ Math.sqrt(3)/3, 1 ], [ 2 * Math.sqrt(3)/3, 0 ], [0,0]]
         } ,
         // 2nd serie - output (black) points
             outputPoints,
@@ -61,7 +61,7 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
             // 3rd serie - prior (green) point
             {
 
-                data: [[1/2,1/3]]
+               // data: [[1/2,1/3]]
             },
 
             priorPoints

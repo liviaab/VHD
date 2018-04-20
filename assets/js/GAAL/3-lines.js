@@ -4,14 +4,18 @@
 	Pontos de altura:
 */
 
-var _PointXHeight = new Point(1/4, Math.sqrt(3)/4);
-var _PointYHeight = new Point(3/4, Math.sqrt(3)/4);
-var _PointZHeight = new Point(1/2, 0);
-var _TriangleHeight = Math.sqrt(3)/2 ;
+var _verticeX = new Point( 2 * Math.sqrt(3)/3, 0 );
+var _verticeY = new Point(0,0);
+var _verticeZ = new Point(Math.sqrt(3)/3, 1);
+
+var _PointXHeight = new Point( Math.sqrt(3)/6, 1/2 );
+var _PointYHeight = new Point( Math.sqrt(3)/2, 1/2 );
+var _PointZHeight = new Point( Math.sqrt(3)/3, 0 );
+var _TriangleHeight = 1 ;
 
 /*
 	barycentric lines
-	Line1: 	x = 1/2
+	Line1: 	x = Math.sqrt(3)/3
 	Line2: 	y = sqrt(3)/3 x
 	Line3: 	y = - sqrt(3)/3 x +  sqrt(3)/3
 		  	y =  sqrt(3)/3 * (-x + 1)
@@ -29,22 +33,22 @@ var line3 = function(x){
 	Angular coefficient of the perpendicular line
 */
 
-//var _acp1 = y
-var _acp2 = -Math.sqrt(3)
-var _acp3 =  Math.sqrt(3)
+//var _angularCoefficientPerpendicularTo1 = y
+var _angularCoefficientPerpendicularTo2 = -Math.sqrt(3)
+var _angularCoefficientPerpendicularTo3 =  Math.sqrt(3)
 
 /*
 	Projeção de um ponto 2D qualquer nas retas baricêntricas
 */
 
 var pointProjectionLine1 = function(x, y){
-	return new Point(1/2, y);
+	return new Point(_PointZHeight.x, y * _TriangleHeight);
 }
 
 var pointProjectionLine2 = function(x, y){
-	var b = y - (_acp2* x );
+	var b = y - (_angularCoefficientPerpendicularTo2* x );
 	
-	//perpendicularToLine2 = _acp2 * x2 + b;
+	//perpendicularToLine2 = _angularCoefficientPerpendicularTo2 * x2 + b;
 
 	//a projeção de (x,y) em line2 é onde as duas retas (line2 e perpendicularToLine2) se encontram 
 	// Math.sqrt(3)/3 * x2 = -Math.sqrt(3) * x2 + b;
@@ -57,9 +61,9 @@ var pointProjectionLine2 = function(x, y){
 }  
 
 var pointProjectionLine3 = function(x, y){
-	var b = y - (_acp3 * x);
+	var b = y - (_angularCoefficientPerpendicularTo3 * x);
 	
-	//perpendicularToLine3 = _acp3 * x2 + b;
+	//perpendicularToLine3 = _angularCoefficientPerpendicularTo3 * x2 + b;
 
 	//a projeção de (x,y) em line3:
 	// - Math.sqrt(3)/3 * ( - x2 + 1 ) = Math.sqrt(3) * x2 + b;
