@@ -19,7 +19,7 @@ var setPrior = function(array){
 
 var setChannel = function(matrix){
 	for(var i = 0; i < matrix.rows ; i++){
-		_channelMatrix = matrix.data[i].slice();
+		_channelMatrix.push(matrix.data[i].slice());
 	}
 }
 

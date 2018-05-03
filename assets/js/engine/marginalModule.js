@@ -10,6 +10,7 @@ var getMarginal = function(){
 }
 
 var setMarginal = function(array){	
+	
 	_marginalDistribution = array.slice();		 
 }
 

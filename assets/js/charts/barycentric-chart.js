@@ -46,30 +46,23 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
         },
 
         series: [{
-            lineWidth: 1,
-            lineColor: '#A0A0A0',
-            name: 'Limits',
-            marker: {
-                enabled: false,
-                symbol: 'circle',
-            },
-            data: [ [0,0], [ Math.sqrt(3)/3, 1 ], [ 2 * Math.sqrt(3)/3, 0 ], [0,0]]
-        } ,
-        // 2nd serie - output (black) points
-            outputPoints,
+                    lineWidth: 1,
+                    lineColor: '#A0A0A0',
+                    name: 'Limits',
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                    },
+                    data: [ [0,0], [ Math.sqrt(2)/2, Math.sqrt(6)/2 ], [  Math.sqrt(2), 0 ], [0,0]]
+                }
+            /*
+            ,outputPoints
+            */
+            ,priorPoints
+            
+            ]
 
-            // 3rd serie - prior (green) point
-            {
-
-               // data: [[1/2,1/3]]
-            },
-
-            priorPoints
-
-
-            ],
-
-        // responsive: {
+        // , responsive: {
         //     rules: [{
         //         condition: {
         //             maxWidth: 500

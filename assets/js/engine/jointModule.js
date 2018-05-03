@@ -9,9 +9,9 @@ var getJoint = function(){
 	return _jointDistribution;
 }
 
-var setJoint = function(matrix){
+var setJoint = function(matrix){	
 	for(var i = 0; i < matrix.rows ; i++){
-		_jointDistribution = matrix.data[i].slice();
+		_jointDistribution.push(matrix.data[i].slice());
 	}
 }
 

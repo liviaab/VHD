@@ -74,23 +74,27 @@ $(document).ready(function(){
 
 var configureAndDrawChart = function(){
     var joint = getJointDistribution(getPriorValues(), getChannelMatrix());
-    
+    var joint2 = getJoint();
+
     var marginalY = getMarginalDistributionColumns(joint);
-    
+    var marginal2 = getMarginal();
+
     var posterior = getPosteriorDistribution(joint, marginalY)
-    
+    var post2  = getPosterior();
+
     var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
+    var hyper2 = getHyper();
 
     configureChartRow();
     
     drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
     
-    var prior2D = transform3Dto2Dpoint(getPriorValues()[0], getPriorValues()[1], getPriorValues()[2]);
+    var prior2D = point3Dto2D(getPriorValues());
 
-    drawBarycentricChart({},{data: [[prior2D.x, prior2D.y]] });
+
+    drawBarycentricChart({}, point2DToChartData(prior2D));
     
     showCalculations();
-
     
 }
 

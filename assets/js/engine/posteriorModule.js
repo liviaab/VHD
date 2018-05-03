@@ -10,7 +10,7 @@ var getPosterior = function(){
 
 var setPosterior = function(matrix){
 	for(var i = 0; i < matrix.rows ; i++){
-		_posteriorDistribution = matrix.data[i].slice();
+		_posteriorDistribution.push(matrix.data[i].slice());
 	}
 }
 
