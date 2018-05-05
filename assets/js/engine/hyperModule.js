@@ -13,6 +13,11 @@ var setHyper = function(matrix){
 	for(var i = 0; i < matrix.rows ; i++){
 		_hyperDistribution.push(matrix.data[i].slice());
 	}	 
+	_hyperDistribution = {
+		rows: matrix.rows,
+		columns: matrix.columns,
+		data: _hyperDistribution
+	}
 }
 
 

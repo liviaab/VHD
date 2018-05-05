@@ -45,15 +45,24 @@ $(document).ready(function(){
     $("#btn-set-values").click(function(){
         if(!emptyTextBox()){
             setValues();
+            addChannelMatrix();
+            addButtons();  
         } 
     });
 
     $(".channel-values").on("click","#btn-Visualize", function(){
+        setValues();
         getChannelMatrixValues();
         if(checkElementsChannelMatrix()){
             // $("#button-more").toggle();
+            setChannel(getChannelMatrix());
             configureAndDrawChart();
-
+            _priorValues = []
+            _channelMatrix = [];
+            _jointDistribution = [];
+            _marginalDistribution = [];
+            _posteriorDistribution = [];
+            _hyperDistribution = [];
         }   
     });
 
@@ -73,7 +82,7 @@ $(document).ready(function(){
 */
 
 var configureAndDrawChart = function(){
-    var joint = getJointDistribution(getPriorValues(), getChannelMatrix());
+    var joint = getJointDistribution(getPrior(), getChannel());
     var joint2 = getJoint();
 
     var marginalY = getMarginalDistributionColumns(joint);
@@ -87,9 +96,9 @@ var configureAndDrawChart = function(){
 
     configureChartRow();
     
-    drawDefaultChart(getPriorValues(),marginalY, hyper.matrix);
+    drawDefaultChart(getPrior(), getMarginal(), getHyper());
     
-    var prior2D = point3Dto2D(getPriorValues());
+    var prior2D = point3Dto2D(getPrior());
 
 
     drawBarycentricChart({}, point2DToChartData(prior2D));

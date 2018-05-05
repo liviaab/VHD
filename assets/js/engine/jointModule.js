@@ -24,9 +24,9 @@ var getJointDistribution = function(priorProbability, channelMatrix){
 	var row;
 	//multiply each row x of C by the prior probability
 
-	for(var j = 0; j < channelMatrix.columns ; j++){
+	for(var j = 0; j < getChannel().columns ; j++){
 		row = [];
-		for(var i = 0; i < channelMatrix.rows ; i++){
+		for(var i = 0; i < getChannel().rows ; i++){
 			row.push(priorProbability[i] * channelMatrix.data[i][j]);
 		}	
 		jointMatrix.addColumn(row);
@@ -36,10 +36,11 @@ var getJointDistribution = function(priorProbability, channelMatrix){
 	_priorDistribution = priorProbability;
 	_channelMatrix = channelMatrix;
 	_jointDistribution = jointMatrix;
-	*/
+	
 	
 	setPrior(priorProbability);
 	setChannel(channelMatrix);
+	*/
 	setJoint(jointMatrix);
 
 	return jointMatrix;

@@ -2,15 +2,14 @@
 	Globals
 */
 
-var _marginalDistribution = []
+var _marginalDistribution = [];
 
 
 var getMarginal = function(){
 	return _marginalDistribution;
 }
 
-var setMarginal = function(array){	
-	
+var setMarginal = function(array){		
 	_marginalDistribution = array.slice();		 
 }
 

@@ -20,16 +20,11 @@ var configureInputs = function(){
 
 var setValues = function(){    
     var temp1, temp2;
-    
-    priorValues = getNumericValues( $("#prior-values").tagsinput('items'));
-    if(priorValues == null){
+    _priorDistribution = []
+    setPrior(getNumericValues( $("#prior-values").tagsinput('items')));
+    if(getPrior() == null){
         $("#prior-values").tagsinput('removeAll');  
-    }
-    
-    addChannelMatrix();
-    addButtons();    
-
-    return priorValues;
+    }  
 }
 
 var getNumericValues = function(array){

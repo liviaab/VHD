@@ -5,7 +5,7 @@
 
 var checkElementsChannelMatrix = function(){
 
-    if(channelMatrix.length%priorValues.length != 0 ){
+    if(channelMatrix.length%getPrior().length != 0 ){
         alert("There are different quantities of output numbers in the channel matrix");
         //throw new Exception("There are different quantities of output numbers in the channel matrix");      
         return false;
@@ -25,7 +25,7 @@ var checkElementsChannelMatrix = function(){
 var addChannelMatrix = function(){
     $('#channel-values-title').html('Channel Matrix');
     $('.channel-values').html('');
-    for(var i =0 ; i < priorValues.length ; i++){
+    for(var i =0 ; i < getPrior().length ; i++){
         var input = document.createElement('input');
         $('.channel-values').append(input);
         $(input).tagsinput({
