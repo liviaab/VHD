@@ -2,7 +2,7 @@ var _barycentricChart
 
 var drawBarycentricChart = function(outputPoints, priorPoints){
 
-    Highcharts.chart('barycentric-container', {
+    var chart = new Highcharts.chart('barycentric-container', {
 
         title: {
             text: 'Barycentric coordinates'
@@ -55,9 +55,9 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                     },
                     data: [ [0,0], [ Math.sqrt(2)/2, Math.sqrt(6)/2 ], [  Math.sqrt(2), 0 ], [0,0]]
                 }
-            /*
+            
             ,outputPoints
-            */
+            
             ,priorPoints
             
             ]
@@ -79,5 +79,5 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
 
     });
 
-
+    return 
 }

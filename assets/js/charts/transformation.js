@@ -38,6 +38,22 @@ var point2Dto3D = function (array) {
 
 }
 
+var matrixPoints3Dto2D = function(matrix){
+	var retArray = [];
+	for(j = 0; j < matrix.columns ; j++){
+		var pointArray = [];
+		for(i = 0; i < matrix.rows ; i++){
+			pointArray.push(matrix.data[i][j]);
+		}
+
+		var point2D = point3Dto2D(pointArray);
+		retArray.push(point2D);
+	}
+
+	return retArray;
+}
+
+/*
 var point2DToChartData = function(point){
 	var retObject = {};
 
@@ -51,4 +67,37 @@ var point2DToChartData = function(point){
                 }
 
     return retObject;
+}
+*/
+
+var arrayPoint2DToChartData = function(array, outputDistribution, isPrior){
+	console.log(array);
+	// [{point.alpha, point.beta}, {point.alpha, point.beta} , {point.alpha, point.beta} ]
+	var retObject = {};
+	var retData  = [];
+
+	array.forEach( function(element, index) {
+		var item = [element.alpha, element.beta];
+		/*
+		var item = {
+			item.x: element.alpha, 
+			item.y: element.beta,
+			item.name: (isPrior)? 'Prior':'Output '+ string(index);
+			item.p: (isPrior)? getPriorRadius(outputDistribution) : outputDistribution[index];
+		};
+		*/
+		retData.push( item );
+	});
+
+	retObject = {                    
+                    //name: (array.length == 1)? 'Prior': 'Output',
+                    marker: {
+                        enabled: true,
+                        //symbol: 'circle',
+                    },
+                    data: retData
+                }
+
+    return retObject;
+
 }

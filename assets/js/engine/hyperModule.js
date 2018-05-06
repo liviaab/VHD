@@ -3,6 +3,7 @@
 */
 
 var _hyperDistribution = [];
+var _finalDistribution = [];
 
 
 var getHyper = function(){
@@ -20,6 +21,13 @@ var setHyper = function(matrix){
 	}
 }
 
+var setFinalDisttribution = function(array){
+	_finalDistribution = array.slice();	
+}
+
+var getFinalDistribution = function(){
+	return _finalDistribution
+}
 
 /*
 	Methods
@@ -56,6 +64,7 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 	}
 
 	setHyper(posteriorDistributionMatrix);
+	setFinalDisttribution(finalMarginalDistribution);
 
 	return {
 		matrix: posteriorDistributionMatrix, 

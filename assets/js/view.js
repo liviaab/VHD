@@ -73,6 +73,7 @@ $(document).ready(function(){
         $(this).hide();
         $("#btn-Visualize").hide();
         $('#chart-container').html('');
+        $('#barycentric-container').html('');
         $('#results').html('');
     });
 });
@@ -83,25 +84,25 @@ $(document).ready(function(){
 
 var configureAndDrawChart = function(){
     var joint = getJointDistribution(getPrior(), getChannel());
-    var joint2 = getJoint();
+    //var joint2 = getJoint();
 
     var marginalY = getMarginalDistributionColumns(joint);
-    var marginal2 = getMarginal();
+    //var marginal2 = getMarginal();
 
     var posterior = getPosteriorDistribution(joint, marginalY)
-    var post2  = getPosterior();
+    //var post2  = getPosterior();
 
     var hyper = getHyperDistribution(posterior.matrix, posterior.distribution);
-    var hyper2 = getHyper();
+    //var hyper2 = getHyper();
 
     configureChartRow();
     
     drawDefaultChart(getPrior(), getMarginal(), getHyper());
     
     var prior2D = point3Dto2D(getPrior());
+    var output2D = matrixPoints3Dto2D(getHyper());  
 
-
-    drawBarycentricChart({}, point2DToChartData(prior2D));
+    drawBarycentricChart( arrayPoint2DToChartData(output2D, getFinalDistribution(), false), arrayPoint2DToChartData([prior2D],getFinalDistribution(), true));
     
     showCalculations();
     
