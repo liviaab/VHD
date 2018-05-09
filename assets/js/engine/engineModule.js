@@ -3,7 +3,7 @@
 */
 
 var _priorDistribution = [];
-var _channelMatrix = []
+var _channelMatrix = [];
 
 var getPrior = function(){
 	return _priorDistribution;
@@ -18,6 +18,8 @@ var setPrior = function(array){
 }
 
 var setChannel = function(matrix){
+	_channelMatrix = [];
+
 	for(var i = 0; i < matrix.rows ; i++){
 		_channelMatrix.push(matrix.data[i].slice());
 	}

@@ -199,19 +199,27 @@ Matrix.prototype.firstMultipleOfColumn= function(columnIndex){
 			}
 		}	
 
-		equal = true;
+		
+		//equal = false;
 		
 		for(var p = i+1; p < this.rows; p++ ){
 			currScale = this.data[p][k]/this.data[p][columnIndex];
 			if ( (this.data[p][columnIndex] == 0 && this.data[p][k] != 0) || (prevScale != currScale && !isNaN(currScale) && currScale != undefined)) {
-				equal = false;
+				//equal = false;
 				break;
 			}		
 		}
 
-		if(equal){
+		if(prevScale == currScale){
+			//equal = true;
 			return k;
 		}
+
+		/*
+		if(equal){
+			
+		}
+		*/
 	} 
 	return -1;
 }

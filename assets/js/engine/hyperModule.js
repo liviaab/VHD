@@ -38,36 +38,43 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 	var finalMarginalDistribution = [];
 	var columnToRemove;
 	var removedColumns = [];
+	var posteriorData = [];
+	posteriorDistributionMatrix.data.forEach( function(element, index) {
+		element.forEach( function(item, internalIndex) {
+			posteriorData.push(item);
+		});
+	});
 
+	var copyPosteriorDistributionMatrix = new Matrix(posteriorDistributionMatrix.rows, posteriorDistributionMatrix.columns, posteriorData);
 
-	for(var j = 0; j < posteriorDistributionMatrix.columns ; j++){
+	for(var j = 0; j < copyPosteriorDistributionMatrix.columns ; j++){
 		if(  removedColumns.includes(j) ){
 			continue;
 		}
 
 		finalMarginalDistribution.push(marginalDistributionY[j]);
 
-		columnToRemove = posteriorDistributionMatrix.firstMultipleOfColumn(j);
+		columnToRemove = copyPosteriorDistributionMatrix.firstMultipleOfColumn(j);
 		if(columnToRemove == -1){
-			hyperDistributionMatrix.addColumnFromMatrix(posteriorDistributionMatrix, j);
+			hyperDistributionMatrix.addColumnFromMatrix(copyPosteriorDistributionMatrix, j);
 		}
 		else{
 			while( columnToRemove != -1){
 
-				hyperDistributionMatrix  = posteriorDistributionMatrix.removeColumn( columnToRemove);
+				hyperDistributionMatrix  = copyPosteriorDistributionMatrix.removeColumn( columnToRemove);
 				removedColumns.push(columnToRemove);
 				finalMarginalDistribution[j] += marginalDistributionY[ columnToRemove ];
 		
-				columnToRemove = posteriorDistributionMatrix.firstMultipleOfColumn(j);			
+				columnToRemove = copyPosteriorDistributionMatrix.firstMultipleOfColumn(j);			
 			}	
 		}
 	}
 
-	setHyper(posteriorDistributionMatrix);
+	setHyper(copyPosteriorDistributionMatrix);
 	setFinalDisttribution(finalMarginalDistribution);
 
 	return {
-		matrix: posteriorDistributionMatrix, 
+		matrix: copyPosteriorDistributionMatrix, 
 		distribution: finalMarginalDistribution 
 	};
 }

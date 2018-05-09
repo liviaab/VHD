@@ -13,6 +13,11 @@ var setJoint = function(matrix){
 	for(var i = 0; i < matrix.rows ; i++){
 		_jointDistribution.push(matrix.data[i].slice());
 	}
+	_jointDistribution = {
+		rows: matrix.rows, 
+		columns: matrix.columns,
+		data: _jointDistribution
+	}
 }
 
 

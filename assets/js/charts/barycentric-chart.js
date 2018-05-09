@@ -2,7 +2,7 @@ var _barycentricChart
 
 var drawBarycentricChart = function(outputPoints, priorPoints){
 
-    var chart = new Highcharts.chart('barycentric-container', {
+    _barycentricChart = new Highcharts.chart(/*'barycentric-container',*/ {
 
         title: {
             text: 'Barycentric coordinates'
@@ -33,7 +33,8 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
         //     }
         // },
         chart: {
-            type: 'scatter',
+            renderTo: 'barycentric-container',
+            type: 'scatter'
         },
 
         plotOptions: {
@@ -41,7 +42,7 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                 dataLabels: {
                     format: "{point.name}",
                     enabled: true
-                },
+                }
             }
         },
 
@@ -51,16 +52,33 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                     name: 'Limits',
                     marker: {
                         enabled: false,
-                        symbol: 'circle',
+                        //symbol: 'circle'
                     },
                     data: [ [0,0], [ Math.sqrt(2)/2, Math.sqrt(6)/2 ], [  Math.sqrt(2), 0 ], [0,0]]
                 }
-            
-            ,outputPoints
-            
-            ,priorPoints
-            
-            ]
+                
+                ,{
+                    //lineWidth: 1,
+                    //lineColor: '#A0A0A0',
+                    name: 'Output',
+                    marker: {
+                        enabled: true,
+                        symbol: 'circle',
+                    },
+                    data: outputPoints
+                }
+
+                ,{
+                    // lineWidth: 1,
+                    // lineColor: '#A0A0A0',
+                    name: 'Prior',
+                    marker: {
+                        enabled: true,
+                        symbol: 'circle',
+                    },
+                    data: priorPoints
+                 }         
+                ]
 
         // , responsive: {
         //     rules: [{
@@ -78,6 +96,4 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
         // }
 
     });
-
-    return 
 }

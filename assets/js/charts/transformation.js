@@ -77,15 +77,18 @@ var arrayPoint2DToChartData = function(array, outputDistribution, isPrior){
 	var retData  = [];
 
 	array.forEach( function(element, index) {
-		var item = [element.alpha, element.beta];
-		/*
-		var item = {
-			item.x: element.alpha, 
-			item.y: element.beta,
-			item.name: (isPrior)? 'Prior':'Output '+ string(index);
-			item.p: (isPrior)? getPriorRadius(outputDistribution) : outputDistribution[index];
-		};
-		*/
+		//var item = [element.alpha, element.beta];
+		
+		var item = {};
+
+		item.x = element.alpha; 
+		item.y = element.beta;
+		item.name = (isPrior)? 'Prior':'Output '+ index.toString();
+		item.p = (isPrior)? getPriorRadius(outputDistribution) : mapRadius(outputDistribution[index]);
+		item.marker= {	radius: item.p
+						//fillColor: '#663300' 
+					};
+		
 		retData.push( item );
 	});
 
@@ -98,6 +101,6 @@ var arrayPoint2DToChartData = function(array, outputDistribution, isPrior){
                     data: retData
                 }
 
-    return retObject;
+    return retData;
 
 }
