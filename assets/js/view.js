@@ -107,11 +107,11 @@ var showCalculations = function(){
     $("#results-c1").html("");
     $("#results-c1").append('<div><p>Number of inputs: ' + numEntries + '<br><br>Number of Outputs: ' + numOutputs + '</p></div>');
     $("#results-c1").append('<div><p>Source Entropy:' + HtmlArray(getPrior()) + '</p></div>');
-
+    $("#results-c1").append('<div><p>Marignal Entropy:' + HtmlArray(getMarginal()) + '</p></div>');
     // $("#results").html('<div><p>Posterior Distribution:' + getPosterior().data+ '</p></div>');
     $("#results-c2").html("");
     $("#results-c2").append('<div><p>Hyper Distribution: ' + HtmlMatrix(getHyper()) + '</p></div>');
-    $("#results-c2").append('<div><p>Marginal Distribution: ' + HtmlArray(getMarginal()) + '</p></div>');
+    $("#results-c2").append('<div><p>Final Marginal Distribution: ' + HtmlArray(getFinalDistribution()) + '</p></div>');
         
 }
 

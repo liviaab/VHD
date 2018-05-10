@@ -83,24 +83,24 @@ var arrayPoint2DToChartData = function(array, outputDistribution, isPrior){
 
 		item.x = element.alpha; 
 		item.y = element.beta;
-		item.name = (isPrior)? 'Prior':'Output '+ index.toString();
-		item.p = (isPrior)? getPriorRadius(outputDistribution) : mapRadius(outputDistribution[index]);
-		item.marker= {	radius: item.p
+		item.name = (isPrior)? 'Prior':'Output '+ (index+1).toString();
+		item.p = (isPrior)? 1 : outputDistribution[index];
+		item.marker= {	radius: (isPrior)? getPriorRadius(outputDistribution) : mapRadius(outputDistribution[index])
 						//fillColor: '#663300' 
 					};
 		
 		retData.push( item );
 	});
 
-	retObject = {                    
-                    //name: (array.length == 1)? 'Prior': 'Output',
-                    marker: {
-                        enabled: true,
-                        //symbol: 'circle',
-                    },
-                    data: retData
-                }
+	retObject = {
+		name: (isPrior)? 'Prior':'Output',		
+        marker: {
+            enabled: true,
+            symbol: 'circle',
+        },
+        data: retData
+	}
 
-    return retData;
+    return retObject;
 
 }

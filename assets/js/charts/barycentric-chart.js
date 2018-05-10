@@ -8,30 +8,6 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
             text: 'Barycentric coordinates'
         },
 
-        // subtitle: {
-        //     text: 'Source: thesolarfoundation.com'
-        // },
-
-        // yAxis: {
-        //     title: {
-        //         text: 'Number of Employees'
-        //     }
-        // },
-
-        // legend: {
-        //     layout: 'vertical',
-        //     align: 'right',
-        //     verticalAlign: 'middle'
-        // },
-
-        // plotOptions: {
-        //     series: {
-        //         label: {
-        //             connectorAllowed: false
-        //         },
-        //         pointStart: 2010
-        //     }
-        // },
         chart: {
             renderTo: 'barycentric-container',
             type: 'scatter'
@@ -41,9 +17,42 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
             scatter: {
                 dataLabels: {
                     format: "{point.name}",
-                    enabled: true
+                    enabled: true,
+                    allowOverlap: true                    
                 }
+            },
+            series: {
+                label: {
+                    connectorAllowed: false
+                }                
             }
+        },
+        
+        tooltip:{
+            formatter: function(){
+                return  '<b>' + this.point.name + '</b><br/>' +
+                        'x: ' + this.point.x + '<br/>' +
+                        'y: ' + this.point.y + '<br/>'+                        
+                        'p: ' + this.point.p
+            }
+        },
+
+        yAxis: {
+            min: 0,
+            max: 1.5,
+            tickInterval: 0.25,
+            title:{
+                text: 'Y'
+            }
+        },
+        xAxis: {
+            min: 0,
+            max: 1.5,
+            tickInterval: 0.25,          
+            title:{ 
+                text: 'X'
+            },
+            gridLineWidth: 1 
         },
 
         series: [{
@@ -57,43 +66,10 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                     data: [ [0,0], [ Math.sqrt(2)/2, Math.sqrt(6)/2 ], [  Math.sqrt(2), 0 ], [0,0]]
                 }
                 
-                ,{
-                    //lineWidth: 1,
-                    //lineColor: '#A0A0A0',
-                    name: 'Output',
-                    marker: {
-                        enabled: true,
-                        symbol: 'circle',
-                    },
-                    data: outputPoints
-                }
+                , outputPoints
+                , priorPoints
 
-                ,{
-                    // lineWidth: 1,
-                    // lineColor: '#A0A0A0',
-                    name: 'Prior',
-                    marker: {
-                        enabled: true,
-                        symbol: 'circle',
-                    },
-                    data: priorPoints
-                 }         
                 ]
-
-        // , responsive: {
-        //     rules: [{
-        //         condition: {
-        //             maxWidth: 500
-        //         },
-        //         chartOptions: {
-        //             legend: {
-        //                 layout: 'horizontal',
-        //                 align: 'center',
-        //                 verticalAlign: 'bottom'
-        //             }
-        //         }
-        //     }]
-        // }
 
     });
 }

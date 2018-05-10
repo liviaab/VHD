@@ -36,7 +36,7 @@ var matrixTo3DData = function(matrix, weights, serieName ){
 	for(j = 0; j < matrix.columns; j++){		
 		var temp = {};
 		
-		temp.name = 'y'+ (j+1).toString();
+		temp.name = 'Output'+ (j+1).toString();
 		temp.x = matrix.data[0][j];
 		temp.y = matrix.data[1][j];
 		temp.z = matrix.data[2][j];
@@ -63,7 +63,7 @@ var priorTo3DData = function(array, radius, serieName){
 
 	var retData = [], temp = {};
 
-	temp.name = 'π';
+	temp.name = 'Prior';
 	temp.x = array[0];
 	temp.y = array[1];
 	temp.z = array[2];

@@ -28,11 +28,12 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
             text: 'subtitle'
         },*/
         plotOptions: {
-            scatter: {
+            scatter3d: {
                 dataLabels: {
                     format: "{point.name}",
-                    enabled: true
-                },
+                    enabled: true,
+                    allowOverlap: true                    
+                }
             }
         },
         tooltip:{
