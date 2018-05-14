@@ -19,6 +19,7 @@ var getPosterior = function(){
 }
 
 var setPosterior = function(matrix){
+	_posteriorMatrix = [];
 	for(var i = 0; i < matrix.rows ; i++){
 		_posteriorMatrix.push(matrix.data[i].slice());
 	}
