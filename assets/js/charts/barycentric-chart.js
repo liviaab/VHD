@@ -37,18 +37,16 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                 point: {
                     events: {
                         drag: function (e) {
-                            // Returning false stops the drag and drops. Example:
-                            
+                            // Returning false stops the drag and drops                            
                            
-                            
-                            if ( ! PointInTriangle( {x:this.x , y:this.y }) ) {
+                            if ( ! PointInTriangle( {x: e.x , y: e.y }) ) {
                                 this.x = e.dragStart.x;
-                                this.y = e.dragStart.y;
-                                //alert("anterior: "+this.x + " "+ this.y );
-                                console.log("saiu");
+                                this.y = e.dragStart.y;                                
                                 return false;
                             }
-                            
+                            else{                                
+                                return true;   
+                            }
 
                             
                             // $('#drag').html(
@@ -57,8 +55,16 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                             
                         },
                         drop: function () {
-                            //alert("oi kk");
                             
+                            if ( ! PointInTriangle( {x:this.x , y:this.y }) ) {
+                                this.x = e.dragStart.x;
+                                this.y = e.dragStart.y;                                   
+                                return false;
+                            }
+                            else{
+                                return true;   
+                            }
+
                             // $('#drop').html(
                             //     'In <b>' + this.series.name + '</b>, <b>' + this.category + '</b> was set to <b>' + Highcharts.numberFormat(this.y, 2) + '</b>');
                             
