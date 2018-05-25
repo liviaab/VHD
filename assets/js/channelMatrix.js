@@ -62,6 +62,7 @@ var getChannelMatrixValues = function(){
         numEntries++;
     });
     //console.log(channelMatrix);
+    
     return channelMatrix;
 }
 

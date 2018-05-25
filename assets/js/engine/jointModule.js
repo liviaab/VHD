@@ -10,6 +10,7 @@ var getJoint = function(){
 }
 
 var setJoint = function(matrix){	
+	_jointDistribution = [];
 	for(var i = 0; i < matrix.rows ; i++){
 		_jointDistribution.push(matrix.data[i].slice());
 	}

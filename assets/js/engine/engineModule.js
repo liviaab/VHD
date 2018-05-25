@@ -14,6 +14,7 @@ var getChannel = function(){
 }
 
 var setPrior = function(array){
+	_priorDistribution = [];
 	_priorDistribution = array.slice();
 }
 
