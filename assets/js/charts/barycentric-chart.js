@@ -72,14 +72,7 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                             setPrior( [point3D.x, point3D.y, point3D.z] );
                             setChannel(getChannelMatrix());
 
-                            getJointDistribution(getPrior(), getChannel());
-                            getMarginalDistributionColumns( getJoint() );
-                            getPosteriorDistribution(getJoint(), getMarginal());
-                            getHyperDistribution(getPosterior(), getMarginalDistribution());
-                            
-                            configureChartRow();
-                            
-                            drawDefaultChart(getPrior(), getMarginalDistribution(), getHyper());
+                            configureAndDrawChart();
                                                    
                         }
                     }
