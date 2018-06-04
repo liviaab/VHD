@@ -110,7 +110,7 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
 
         series: [{
                     lineWidth: 1,
-                    lineColor: '#A0A0A0',
+                    lineColor: '#000000',
                     name: 'Limits',
                     marker: {
                         enabled: false,

@@ -3,28 +3,30 @@
 }
 
 body{
-	margin-left: 10%; /* Same as the width of the sidenav */
+	margin-left: 10%; /* Same as the width of sidenav */
 	font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
 }
 
 
 
 .sidebar{
-    height: 100%; /* Full-height: remove this if you want "auto" height */
+    height: 100%; /* Full-height: remove this if you want "auto" height */*/
+
     width: 10%; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
+    overflow: hidden; /* Disable horizontal scroll */
+    
 }
 
 /* The navigation menu links */
 .sidebar a {
-    padding: 6px 8px 6px 16px;
-    height:25%; 
+    /*padding: 6px 8px 6px 16px;*/
+    height:25%;
     text-decoration: none;
     font-size: 20px;
     color: #818181;
@@ -34,6 +36,13 @@ body{
 	display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
+}
+
+hr {
+    border-top: 1px solid white;
+    width: 90%;
+    margin: auto;
 }
 
 
@@ -69,8 +78,4 @@ body{
 
 h1{
 	font-size: 48px;
-}
-
-div{
-    padding: 5px;
 }

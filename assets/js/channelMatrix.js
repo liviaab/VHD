@@ -27,6 +27,9 @@ var addChannelMatrix = function(){
     $('.channel-values').html('');
     for(var i =0 ; i < getPrior().length ; i++){
         var input = document.createElement('input');
+        input.setAttribute("method", "post");
+        input.setAttribute("data-role", "tags-input");
+
         $('.channel-values').append(input);
         $(input).tagsinput({
             allowDuplicates: true,

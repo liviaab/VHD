@@ -15,7 +15,7 @@ var configureInputs = function(){
         allowDuplicates: true,
         confirmKeys: [13, 32, 44], //enter, space, comma 
         delimiter: ','
-    });
+    });    
 }
 
 var setValues = function(){    

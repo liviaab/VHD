@@ -61,26 +61,29 @@
             <div>
                 <nav class="navbar sidebar">
                     <a href="index.html">Home</a>
+                    <hr class="style1">
                     <a href="example.html">Example</a>
+                    <hr class="style1">
                     <a href="tryit.html">Try it</a>
+                    <hr class="style1">
                     <a href="about.html">About</a>
                 </nav>
             </div>
             <br>
 
             <div class="row">                
-                <div class="col-md-6">
-                    <div>Prior Distribution
+                <div class="col-md-6 prior-tags">
+                    <div id="prior-title"> Prior Distribution
                     <span class="glyphicon glyphicon-info-sign" id="info-prior" data-toggle="tooltip" data-placement="top" 
                         title="Please use fractions or decimal format: '0.*' Delimiters: space, enter and comma."></span>
                     </div>
 
-                    <input type="text"  id="prior-values"/>
+                    <input type="text" id="prior-values" method ="post" data-role="tags-input"/>
                     
-                    <div> <button type="button" id="btn-set-values" class="btn btn-default">Set Matrix Values</button></div>    
+                    <div><button type="button" id="btn-set-values" class="btn btn-default">Set Matrix Values</button></div>    
                 </div>
                 
-                <div  class="col-md-6">
+                <div  class="col-md-6 channel-tags">
                     <div id="channel-values-title"></div>
                     <div class="channel-values"></div>
                 </div>
@@ -90,20 +93,7 @@
                 <div id="chart-container" class="col-md-6"></div>
                 <div id="barycentric-container" class="col-md-6"></div>
             </div>
-           <!--  <div class="row" id="more"> 
-                <div id="button-more" class="col-md-2" >
-                    <button class="btn btn-default" type="button" id="button-detail"><span class="glyphicon glyphicon-plus"></span></button>
-                </div>
-                <div id="button-less" class="col-md-2" >
-                    <button class="btn btn-default" type="button" id="button-hide"><span class="glyphicon glyphicon-minus"></span></button>
-                </div>
-            </div>
-            <div class="row" id='scatter-axis-subtitle'>Change Prior Distribution</div>
-            <div class="row scatter-axis">
-                <div id='x-coordinate' class=" col-md-4"></div>
-                <div id='y-coordinate' class=" col-md-4"></div>
-                <div id='z-coordinate' class=" col-md-4"></div>
-            </div> -->
+           
             <div class="row calculations">
                 <div class=" col-md-6" id="results-c1"></div>                
                 <div class=" col-md-6" id="results-c2"></div>

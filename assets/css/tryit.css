@@ -4,6 +4,7 @@
   min-height: 400px; 
   height: 600px; 
   margin: 0 auto;
+
 }
 
 th, td{
@@ -14,17 +15,41 @@ th, td{
   bottom: 0;
 }
 
-#x-coordinate, #y-coordinate, #z-coordinate{
-  width: 30%; 
-  min-height: 100px; 
-  height: 100px; 
-  margin: 0 auto;
-}
-
 .scatter-axis{
   height: 400px;
 }
 
 .btn{
-  
+  margin-right: 1em;
+  font-size: 16px;
+}
+
+.prior-values{
+	/*margin-top: 0.5em;*/
+}
+
+.prior-tags #prior-title, .channel-tags #channel-values-title{
+	margin-bottom:  0.5em;
+}
+
+.prior-tags #prior-title span{
+	margin-left: 0.5em;
+	margin-bottom: : 0;
+}
+
+input{
+	font-size: 14px;
+	
+}
+
+.prior-tags .bootstrap-tagsinput .tag{
+	background-color:#7cea9c;
+}
+
+.channel-tags .bootstrap-tagsinput .tag{
+	background-color:#717469;
+}
+
+.prior-tags .bootstrap-tagsinput , .channel-tags .bootstrap-tagsinput  {
+	margin-bottom: 0.5em;
 }

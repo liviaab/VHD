@@ -71,7 +71,7 @@ var point2DToChartData = function(point){
 */
 
 var arrayPoint2DToChartData = function(array, outputDistribution, isPrior){
-	console.log(array);
+	//console.log(array);
 	// [{point.alpha, point.beta}, {point.alpha, point.beta} , {point.alpha, point.beta} ]
 	var retObject = {};
 	var retData  = [];
