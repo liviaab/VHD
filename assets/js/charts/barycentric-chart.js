@@ -96,7 +96,8 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
             tickInterval: 0.25,
             title:{
                 text: 'Y'
-            }
+            },
+            gridLineColor: '#A0A0A0'
         },
         xAxis: {
             min: 0,
@@ -105,7 +106,8 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
             title:{ 
                 text: 'X'
             },
-            gridLineWidth: 1 
+            gridLineWidth: 1 ,
+            gridLineColor: '#A0A0A0'
         },
 
         series: [{

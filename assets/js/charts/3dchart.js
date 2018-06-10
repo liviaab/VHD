@@ -54,8 +54,10 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	            skew3d: true
 	        },
 	        title:{
-	        	text: 'x2'
-	        }
+	        	text: 'I2',
+                color: '#717469'
+	        },
+            gridLineColor: '#C0C0C0'
         },
         xAxis: {
             min: 0,
@@ -65,9 +67,10 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	            skew3d: true
 	        },
 	        title:{ 
-	        	text: 'x1'
+	        	text: 'I1'
 	        },
-            gridLineWidth: 1 
+            gridLineWidth: 1 ,
+            gridLineColor: '#C0C0C0'
         },
         zAxis: {
             min: 0,
@@ -77,8 +80,9 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
 	            skew3d: true
 	        },
 	        title:{
-	        	text:'x3'
+	        	text:'I3'
 	        },
+            gridLineColor: '#C0C0C0'
         },
         legend: {
             enabled: false

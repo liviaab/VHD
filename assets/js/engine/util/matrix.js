@@ -238,7 +238,7 @@ var HtmlMatrix = function(matrix){
 	for(var i = 0 ; i < matrix.rows ; i++){
 		var newRow = row.clone();
 		for (var j = 0 ; j < matrix.columns ; j++){
-			newRow.append(cell.clone().text(matrix.data[i][j]));
+			newRow.append(cell.clone().text(matrix.data[i][j].toFixed(5)));
 		}
 		tbody.append(newRow);
 	}
@@ -257,7 +257,7 @@ var HtmlArray = function(array){
 
 	var newRow = row.clone();			
 	for(var i = 0 ; i < array.length ; i++){
-		newRow.append(cell.clone().text(array[i]));
+		newRow.append(cell.clone().text(array[i].toFixed(5)));
 	}
 	tbody.append(newRow);
 

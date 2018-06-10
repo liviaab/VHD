@@ -1,4 +1,4 @@
-#container{
+#container, #barycentric-container{
   /*min-width: 400px; */
   width: 600px; 
   min-height: 400px; 
@@ -6,6 +6,7 @@
   margin: 0 auto;
 
 }
+
 
 th, td{
 	padding: 5px;
@@ -43,7 +44,7 @@ input{
 }
 
 .prior-tags .bootstrap-tagsinput .tag{
-	background-color:#7cea9c;
+	background-color:#19A844;
 }
 
 .channel-tags .bootstrap-tagsinput .tag{

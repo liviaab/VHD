@@ -56,6 +56,7 @@ $(document).ready(function(){
         if(checkElementsChannelMatrix()){
             // $("#button-more").toggle();
             setChannel(getChannelMatrix());
+
             configureAndDrawChart();
             _priorValues = []
             _channelMatrix = [];
@@ -74,7 +75,10 @@ $(document).ready(function(){
         $("#btn-Visualize").hide();
         $('#chart-container').html('');
         $('#barycentric-container').html('');
-        $('#results').html('');
+        $('#results-c1').html('');
+        $('#results-c2').html('');
+        $('.chart-row').hide();
+        $('.row-calculations').hide();
     });
 });
 
@@ -89,7 +93,7 @@ var configureAndDrawChart = function(){
     getHyperDistribution(getPosterior(), getMarginalDistribution());
     
     configureChartRow();
-    
+    $('.chart-row').show();
     drawDefaultChart(getPrior(), getMarginalDistribution(), getHyper());
     
     var prior2D = point3Dto2D(getPrior());
