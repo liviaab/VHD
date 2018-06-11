@@ -4,9 +4,7 @@
   min-height: 400px; 
   height: 600px; 
   margin: 0 auto;
-
 }
-
 
 th, td{
 	padding: 5px;
@@ -53,4 +51,7 @@ input{
 
 .prior-tags .bootstrap-tagsinput , .channel-tags .bootstrap-tagsinput  {
 	margin-bottom: 0.5em;
+}
+.calculations, table{
+	text-align: center;
 }
