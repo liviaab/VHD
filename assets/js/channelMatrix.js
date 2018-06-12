@@ -23,7 +23,7 @@ var checkElementsChannelMatrix = function(){
 */
 
 var addChannelMatrix = function(){
-    $('#channel-values-title').html('Channel Matrix');
+    $('#channel-values-title').html('<b>Channel Matrix</b>');
     $('.channel-values').html('');
     for(var i =0 ; i < getPrior().length ; i++){
         var input = document.createElement('input');

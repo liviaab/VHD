@@ -109,10 +109,10 @@ var configureAndDrawChart = function(){
 
 var showCalculations = function(){
     $("#results-c1").html("");
-    $("#results-c1").append('<div><p><b>Number of inputs:</b> ' + numEntries + '<br><br><b>Number of Outputs:</b> ' + numOutputs + '</p><br><br></div>');
+    $("#results-c1").append('<div><p><b>Number of inputs:</b> ' + numEntries + '<br><br><b>Number of Outputs:</b> ' + numOutputs + '</p><br></div>');
     $("#results-c1").append('<div><p><b>Source Entropy:</b>' + HtmlArray(getPrior()) + '</p></div>');
     $("#results-c1").append('<div><p><b>Marignal Entropy:</b>' + HtmlArray(getMarginal()) + '</p></div>');
-    $("#results-c1").append('<div><p><b>Posterior Distribution:</b>' + HtmlMatrix(getPosterior())+ '</p></div>');
+    /*$("#results-c1").append('<div><p><b>Posterior Distribution:</b>' + HtmlMatrix(getPosterior())+ '</p></div>');*/
     $("#results-c2").html("");
     $("#results-c2").append('<div><p><b>Hyper Distribution:</b> ' + HtmlMatrix(getHyper()) + '</p></div>');
     $("#results-c2").append('<div><p><b>Final Marginal Distribution:</b> ' + HtmlArray(getFinalDistribution()) + '</p></div>');

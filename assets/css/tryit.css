@@ -52,6 +52,7 @@ input{
 .prior-tags .bootstrap-tagsinput , .channel-tags .bootstrap-tagsinput  {
 	margin-bottom: 0.5em;
 }
-.calculations, table{
+
+/* .calculations, table{
 	text-align: center;
-}
+} */
