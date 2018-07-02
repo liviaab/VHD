@@ -94,7 +94,7 @@ var configureAndDrawChart = function(){
     
     configureChartRow();
     $('.chart-row').show();
-    drawDefaultChart(getPrior(), getMarginalDistribution(), getHyper());
+    drawDefaultChart(getPrior(), getFinalDistribution(), getHyper());
     
     var prior2D = point3Dto2D(getPrior());
     var output2D = matrixPoints3Dto2D(getHyper());  

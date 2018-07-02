@@ -85,7 +85,7 @@ var drawChart = function(alphaAngle, betaAngle, outputPoints, priorPoints){
             gridLineColor: '#C0C0C0'
         },
         legend: {
-            enabled: false
+            enabled: true
         },
 
         series: [

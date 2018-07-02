@@ -35,7 +35,7 @@ var getFinalDistribution = function(){
 */
 var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistributionY){
 	// check if there are scaled columns
-	var hyperDistributionMatrix = new Matrix();
+	//var hyperDistributionMatrix = new Matrix();
 	var finalMarginalDistribution = [];
 	var columnToRemove;
 	var removedColumns = [];
@@ -57,12 +57,14 @@ var getHyperDistribution = function(posteriorDistributionMatrix, marginalDistrib
 
 		columnToRemove = copyPosteriorDistributionMatrix.firstMultipleOfColumn(j);
 		if(columnToRemove == -1){
-			hyperDistributionMatrix.addColumnFromMatrix(copyPosteriorDistributionMatrix, j);
+			//hyperDistributionMatrix.addColumnFromMatrix(copyPosteriorDistributionMatrix, j);
+			continue;
 		}
 		else{
 			while( columnToRemove != -1){
 
-				hyperDistributionMatrix  = copyPosteriorDistributionMatrix.removeColumn( columnToRemove);
+				//hyperDistributionMatrix  = 
+				copyPosteriorDistributionMatrix.removeColumn( columnToRemove);
 				removedColumns.push(columnToRemove);
 				finalMarginalDistribution[j] += marginalDistributionY[ columnToRemove ];
 		

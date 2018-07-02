@@ -1,8 +1,8 @@
 #container, #barycentric-container{
   /*min-width: 400px; */
-  width: 600px; 
+  width: 400px; 
   min-height: 400px; 
-  height: 600px; 
+  height: 400px; 
   margin: 0 auto;
 }
 

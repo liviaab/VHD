@@ -132,7 +132,7 @@ Matrix.prototype.addColumnFromMatrix= function(matrixSource, columnIndex){
 *	@param {Number} columnIndex  - indice da coluna que sera removida
 *
 */
-Matrix.prototype.removeColumn= function(columnIndex){
+Matrix.prototype.removeColumn = function(columnIndex){
 	if(this.columns == undefined || this.columns -1 < columnIndex){
 		throw new Exception("There's no such column to be removed.");
 	}
@@ -144,6 +144,7 @@ Matrix.prototype.removeColumn= function(columnIndex){
 		}
 		retMatrix.addColumnFromMatrix(this, i)
 	}
+	
 	this.data = retMatrix.data;
 	this.rows = retMatrix.rows;
 	this.columns = retMatrix.columns;
