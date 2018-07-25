@@ -1,22 +1,4 @@
 
-/*
-    Validations
-*/
-
-var checkElementsChannelMatrix = function(){
-
-    if(channelMatrix.length%getPrior().length != 0 ){
-        alert("There are different quantities of output numbers in the channel matrix");
-        //throw new Exception("There are different quantities of output numbers in the channel matrix");      
-        return false;
-    }
-
-    if(channelMatrix.length != numEntries* numOutputs){
-        alert("Missing entries in the channel matrix");
-        return false;
-    }
-    return true;
-}
 
 /*
 	Methods
@@ -53,18 +35,18 @@ var getChannelMatrixValues = function(){
     var temp = [];
     
     $('.channel-values').children('input').each(function () {
-        temp = getNumericValues($(this).tagsinput('items'));
+        temp = $(this).tagsinput('items');
+
         if(temp == null){
             $(this).tagsinput('removeAll');
         }else{
             for(var i = 0; i < temp.length; i++ ){
-                channelMatrix.push(temp[i]);      
+                channelMatrix.push( math.fraction(temp[i].trim()) );      
             }   
             numOutputs = temp.length;  
         }
         numEntries++;
     });
-    //console.log(channelMatrix);
     
     return channelMatrix;
 }

@@ -51,12 +51,11 @@ $(document).ready(function(){
     });
 
     $(".channel-values").on("click","#btn-Visualize", function(){
-        setValues();
+        
         getChannelMatrixValues();
-        if(checkElementsChannelMatrix()){
-            // $("#button-more").toggle();
-            setChannel(getChannelMatrix());
+        setChannel(getChannelMatrix());
 
+        if( validateFields() ){                        
             configureAndDrawChart();
             _priorValues = []
             _channelMatrix = [];
@@ -85,6 +84,41 @@ $(document).ready(function(){
 /* 
     Methods
 */
+
+function sumPrior() {
+    var result = math.sum(getPrior());
+    return math.number(result);
+}
+
+var validateFields = function(){
+    
+    if (sumPrior() != 1) {
+        alert("A soma das probabilidades iniciais não é 1")
+        return false;
+    }
+    
+    for(var i = 0; i < numEntries ; i++){
+        var temp = math.sum(getChannel().data[i])
+        
+        if(math.number(temp) != 1){
+            alert("A soma das probabilidades da linha "+(i + 1) +" do canal não é 1");
+            return false;
+        }
+    }
+
+    if(channelMatrix.length % getPrior().length != 0 ){
+        alert("There are different quantities of output numbers in the channel matrix");
+        //throw new Exception("There are different quantities of output numbers in the channel matrix");      
+        return false;
+    }
+
+    if(channelMatrix.length != numEntries * numOutputs){
+        alert("Missing entries in the channel matrix");
+        return false;
+    }
+
+    return true;
+}
 
 var configureAndDrawChart = function(){
     getJointDistribution(getPrior(), getChannel());

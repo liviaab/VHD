@@ -15,7 +15,10 @@ var getChannel = function(){
 
 var setPrior = function(array){
 	_priorDistribution = [];
-	_priorDistribution = array.slice();
+	for(var i =0 ;i< array.length; i++){
+		_priorDistribution.push(  math.fraction( array[i] ));
+	}
+	
 }
 
 var setChannel = function(matrix){
