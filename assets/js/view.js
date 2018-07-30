@@ -67,7 +67,15 @@ $(document).ready(function(){
     });
 
     $(".channel-values").on("click","#btn-clear", function(){
-        $('#prior-values').tagsinput('removeAll');
+        clearPage();
+    });
+});
+
+/* 
+    Methods
+*/
+function clearPage(){
+    $('#prior-values').tagsinput('removeAll');
         $('#channel-values-title').html('');
         $('.channel-values').html('');
         $(this).hide();
@@ -78,12 +86,7 @@ $(document).ready(function(){
         $('#results-c2').html('');
         $('.chart-row').hide();
         $('.row-calculations').hide();
-    });
-});
-
-/* 
-    Methods
-*/
+}
 
 function sumPrior() {
     var result = math.sum(getPrior());

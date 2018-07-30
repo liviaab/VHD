@@ -30,7 +30,9 @@ a:hover {
     background-color: #f1f1f1;
     color: black;
 }
-
+body{
+    overflow: auto;
+}
 .next {
     background-color: #818181;
     color: white;
@@ -53,8 +55,16 @@ a:hover {
 
 }
 .panel-content{
-    position: fixed;
-    width: 100%;
-    /*top: 25%;*/
-    /*left: 50%;*/
+    position: absolute;
+    width: 75%;
+    margin-left: 10%;
+}
+
+@media screen and (max-width: 600px) {
+   .steps-content {
+        width: 100%;
+    }
+    body{
+        margin-left: 0;
+    }
 }

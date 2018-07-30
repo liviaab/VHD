@@ -33,21 +33,29 @@ var getChannelMatrixValues = function(){
     numEntries = 0;
     numOutputs = 0;
     var temp = [];
-    
-    $('.channel-values').children('input').each(function () {
-        temp = $(this).tagsinput('items');
 
-        if(temp == null){
-            $(this).tagsinput('removeAll');
-        }else{
-            for(var i = 0; i < temp.length; i++ ){
-                channelMatrix.push( math.fraction(temp[i].trim()) );      
-            }   
-            numOutputs = temp.length;  
-        }
-        numEntries++;
-    });
+    try{
+        $('.channel-values').children('input').each(function () {
+            temp = $(this).tagsinput('items');
+
+            if(temp == null){
+                $(this).tagsinput('removeAll');
+            }else{
+                for(var i = 0; i < temp.length; i++ ){
+                    channelMatrix.push( math.fraction(temp[i].trim()) );      
+                }   
+                numOutputs = temp.length;  
+            }
+            numEntries++;
+        });
+        
+        return channelMatrix;
+    }
+    catch(error){
+        alert(error);
+        clearPage();
+        throw error;
+    }
     
-    return channelMatrix;
 }
 

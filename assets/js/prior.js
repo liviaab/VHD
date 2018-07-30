@@ -19,12 +19,19 @@ var configureInputs = function(){
 }
 
 var setValues = function(){    
-    priorAsNumbers = [];
-    $("#prior-values").tagsinput('items').forEach(element =>{ priorAsNumbers.push(math.eval(element.trim()));});
-    setPrior( priorAsNumbers);
-    
-    if(getPrior() == null){
-        $("#prior-values").tagsinput('removeAll');  
-    }  
+    try{
+        priorAsNumbers = [];
+        $("#prior-values").tagsinput('items').forEach(element =>{ priorAsNumbers.push(math.eval(element.trim()));});
+        setPrior( priorAsNumbers);
+        
+        if(getPrior() == null){
+            $("#prior-values").tagsinput('removeAll');  
+        } 
+    } 
+    catch(error){
+        alert(error);
+        clearPage();
+        throw error;
+    }
 }
 

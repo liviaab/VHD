@@ -60,20 +60,13 @@ var drawBarycentricChart = function(outputPoints, priorPoints){
                             if ( ! PointInTriangle( {x:this.x , y:this.y }) ) {
                                 this.x = e.dragStart.x;
                                 this.y = e.dragStart.y;                                   
-                               //return false;
-                            }
-                            else{
-                                //return true;   
                             }
                             
-                            // $('#drop').html(
-                            //     'In <b>' + this.series.name + '</b>, <b>' + this.category + '</b> was set to <b>' + Highcharts.numberFormat(this.y, 2) + '</b>');
-                            var point3D = point2Dto3D([this.x, this.y]);
-                            setPrior( [point3D.x, point3D.y, point3D.z] );
+                            var point3D = point2Dto3D([this.x, this.y]);                            
+                            setPrior( [point3D.x, point3D.y, point3D.z] );                          
                             setChannel(getChannelMatrix());
-
-                            configureAndDrawChart();
-                                                   
+                            configureAndDrawChart();                           
+                  
                         }
                     }
                 },

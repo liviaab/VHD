@@ -6,7 +6,7 @@ var check3DVisualization = function(array){
 	if(array.length != 3){
 		// console.log("3D visualization is not available");
 		alert("3D visualization is not available");
-		// throw new Exception("3D visualization is not available");
+		 throw new Exception("3D visualization is not available");
 	}
 }
 
@@ -64,9 +64,9 @@ var priorTo3DData = function(array, radius, serieName){
 	var retData = [], temp = {};
 
 	temp.name = 'Prior';
-	temp.x = array[0];
-	temp.y = array[1];
-	temp.z = array[2];
+	temp.x = math.number(array[0]);
+	temp.y = math.number(array[1]);
+	temp.z = math.number(array[2]);
 	temp.p = 1;
 	temp.marker= {	radius: radius, 
 					symbol: 'circle',
