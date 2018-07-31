@@ -96,7 +96,7 @@ function sumPrior() {
 var validateFields = function(){
     
     if (sumPrior() != 1) {
-        alert("A soma das probabilidades iniciais não é 1")
+        alert("The sum of the initial probabilities (prior) is not 1")
         return false;
     }
     
@@ -104,7 +104,7 @@ var validateFields = function(){
         var temp = math.sum(getChannel().data[i])
         
         if(math.number(temp) != 1){
-            alert("A soma das probabilidades da linha "+(i + 1) +" do canal não é 1");
+            alert("The sum of the probabilities of the "+(i + 1) +" of the channel is not 1");
             return false;
         }
     }
@@ -129,16 +129,22 @@ var configureAndDrawChart = function(){
     getPosteriorDistribution(getJoint(), getMarginal());
     getHyperDistribution(getPosterior(), getMarginalDistribution());
     
-    configureChartRow();
-    $('.chart-row').show();
-    drawDefaultChart(getPrior(), getFinalDistribution(), getHyper());
-    
-    var prior2D = point3Dto2D(getPrior());
-    var output2D = matrixPoints3Dto2D(getHyper());  
+    if(getPrior().length == 3){
+        configureChartRow();
+        $('.chart-row').show();
+        drawDefaultChart(getPrior(), getFinalDistribution(), getHyper());
+        
+        var prior2D = point3Dto2D(getPrior());
+        var output2D = matrixPoints3Dto2D(getHyper());  
 
-    drawBarycentricChart( arrayPoint2DToChartData(output2D, getFinalDistribution(), false),
-                          arrayPoint2DToChartData([prior2D],getFinalDistribution(), true));
-    
+        drawBarycentricChart( arrayPoint2DToChartData(output2D, getFinalDistribution(), false),
+                              arrayPoint2DToChartData([prior2D],getFinalDistribution(), true));
+        
+    }
+    else{
+        alert("Can not generate a view with "+getPrior().length.toString()  +" entries.");
+    }
+
     showCalculations();
     
 }

@@ -31,7 +31,6 @@ var setPosterior = function(matrix){
 }
 
 
-
 /*
 	Methods
 */
@@ -47,27 +46,28 @@ var getPosteriorDistribution = function(jointMatrix, initialMarginalDistribution
 	var copyMatrix = new Matrix(jointMatrix.rows, jointMatrix.columns, arrayData);
 
 
-	for(var j = 0; j < jointMatrix.columns ; j++){
-		if( copyMatrix.isColumnZero(j)){
-			//returnMatrix = jointMatrix.removeColumn(j);
+	for(var j = 0, outerColumn = 0; j < copyMatrix.columns ; j++, outerColumn++){
+		if( copyMatrix.isColumnZero(j)){		
 			copyMatrix.removeColumn(j);
-			initialMarginalDistribution.splice(j);
+			
+			j--;
 		}
-		//jointMatrix.addColumnFromMatrix(returnMatrix,j);
-		//marginalDistribution.push(initialMarginalDistribution[j]);
+		else{
+			marginalDistribution.push(initialMarginalDistribution[outerColumn]);
+		}
 	}
 
 	for(var j = 0; j < copyMatrix.columns; j++){
 		for(var i = 0; i < copyMatrix.rows ; i++){
-			copyMatrix.data[i][j] = copyMatrix.data[i][j]/initialMarginalDistribution[j]; 	
+			copyMatrix.data[i][j] = copyMatrix.data[i][j]/marginalDistribution[j]; 	
 		}	
 	}
-	//_posteriorDistribution = jointMatrix;
+	
 	setPosterior(copyMatrix);
-	setMarginalDistribution(initialMarginalDistribution);
+	setMarginalDistribution(marginalDistribution);
 
 	return {
 		matrix: copyMatrix,
-		distribution: initialMarginalDistribution
+		distribution: marginalDistribution
 	}
 }

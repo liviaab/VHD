@@ -1,10 +1,8 @@
 
 .steps-content{
-    width: 80%;
     height: 100%;
 }
-.step-panel{
-    width: 100%;
+.step-panel{    
     text-align: center; 
 }
 .active{
@@ -51,13 +49,9 @@ body{
     border: 2px solid #818181;
     margin: 0 auto;
     margin-bottom: 1em; 
-
-
 }
+
 .panel-content{
-    position: absolute;
-    width: 75%;
-    margin-left: 10%;
 }
 
 @media screen and (max-width: 600px) {
